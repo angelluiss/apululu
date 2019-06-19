@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Apululu</string>
-    <string name="prueba">Hi, how are you?</string>
+
+    <string name="footer" translatable="true">"\@Apululu 2019 | All rights reserved"</string>
+
+    <string name="logintittle" translatable="true">Meet Cool people around you</string>
+    <string name="facebook_button" translatable="true">Login with Facebook</string>
+    <string name="login_email_button" translatable="true">Login with Email</string>
+    <string name="register_singup" translatable="true">"Don't have an account? Tap to Sign Up"</string>
 </resources>

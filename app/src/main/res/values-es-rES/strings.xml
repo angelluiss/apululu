@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Apululu</string>
+    <string name="footer">\@Apululu 2019 | Todos los derechos reservados</string>
+    <string name="logintittle">Conoce gente cerca de ti</string>
+    <string name="facebook_button">Inicia sesion con Facebook</string>
+    <string name="login_email_button">Iniciar sesion con Email</string>
+    <string name="register_singup" translatable="true">¿No tienes una cuenta?, Registrate</string>
 </resources>
