@@ -20,4 +20,7 @@
     <string name="name_lastname_tittle" translatable="true">What is your name?</string>
     <string name="name_register" translatable="true">Names</string>
     <string name="last_name" translatable="true">Last Name</string>
+    <string name="calendar_age" translatable="true">Tell us, how old are you?</string>
+    <string name="sex_tittle" translatable="true">Are you a..?</string>
+    <string name="male" translatable="true">MAN</string>
 </resources>

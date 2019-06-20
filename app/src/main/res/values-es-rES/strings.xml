@@ -19,4 +19,7 @@
     <string name="name_lastname_tittle">¿Cuál es tu nombre?</string>
     <string name="name_register" translatable="true">Nombre</string>
     <string name="last_name" translatable="true">Apellidos</string>
+    <string name="calendar_age" translatable="true">¿Dinos, cuál es tu edad?</string>
+    <string name="sex_tittle" translatable="true">Eres un/una…?</string>
+    <string name="male">HOMBRE</string>
 </resources>
