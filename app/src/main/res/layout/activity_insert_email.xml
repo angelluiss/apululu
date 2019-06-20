@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
                 <RadioButton
-                    android:id="@+id/radioButton"
+                    android:id="@+id/rbPrivacy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/terms_and_conditions" />
@@ -76,9 +76,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="550dp"
+            android:layout_marginTop="571dp"
             android:gravity="center">
             <LinearLayout
+                android:id="@+id/llInsertEmailBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_button_gradient_solid"
@@ -91,9 +92,6 @@
                     android:textSize="24sp"
                     android:textColor="@color/color_white"/>
             </LinearLayout>
-
         </LinearLayout>
-
     </RelativeLayout>
-
 </LinearLayout>

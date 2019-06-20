@@ -8,10 +8,16 @@
     <string name="login_email_button" translatable="true">Login with Email</string>
     <string name="register_singup" translatable="true">"Don't have an account? Tap to Sign Up"</string>
 
+    <!-- Pantallas de Registro-->
     <string name="insert_email" translatable="true">Insert your Email</string>
-
     <string name="example_email" translatable="true">example@mail.com</string>
-
     <string name="terms_and_conditions" translatable="true">I agree to the Terms &amp; Agreements and Privacy Policy</string>
     <string name="button_next" translatable="true">NEXT</string>
+    <string name="verification_title" translatable="true">Verification</string>
+    <string name="password_tittle" translatable="true">Insert a password &#xA; to your account</string>
+    <string name="password_input" translatable="true">Password</string>
+    <string name="repeat_password_input" translatable="true">Repeat Password</string>
+    <string name="name_lastname_tittle" translatable="true">What is your name?</string>
+    <string name="name_register" translatable="true">Names</string>
+    <string name="last_name" translatable="true">Last Name</string>
 </resources>

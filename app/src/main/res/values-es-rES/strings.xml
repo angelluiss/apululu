@@ -7,11 +7,16 @@
     <string name="login_email_button">Iniciar sesion con Email</string>
     <string name="register_singup">¿No tienes una cuenta?, Registrate</string>
 
+    <!-- Pantallas de Registro-->
     <string name="insert_email">Inserta tu Email</string>
-
     <string name="example_email">ejemplo@mail.com</string>
-
-
     <string name="terms_and_conditions">Estoy de acuerdo con los terminos &amp; condiciones y Política de privacidad</string>
     <string name="button_next">SIGUIENTE</string>
+    <string name="verification_title">Verificación</string>
+    <string name="password_tittle">Inserta una contraseña &#xA;para tu cuenta</string>
+    <string name="password_input">Contraseña</string>
+    <string name="repeat_password_input">Repita su contraseña</string>
+    <string name="name_lastname_tittle">¿Cuál es tu nombre?</string>
+    <string name="name_register" translatable="true">Nombre</string>
+    <string name="last_name" translatable="true">Apellidos</string>
 </resources>
