@@ -7,4 +7,11 @@
     <string name="facebook_button" translatable="true">Login with Facebook</string>
     <string name="login_email_button" translatable="true">Login with Email</string>
     <string name="register_singup" translatable="true">"Don't have an account? Tap to Sign Up"</string>
+
+    <string name="insert_email" translatable="true">Insert your Email</string>
+
+    <string name="example_email" translatable="true">example@mail.com</string>
+
+    <string name="terms_and_conditions" translatable="true">I agree to the Terms &amp; Agreements and Privacy Policy</string>
+    <string name="button_next" translatable="true">NEXT</string>
 </resources>

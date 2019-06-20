@@ -5,5 +5,13 @@
     <string name="logintittle">Conoce gente cerca de ti</string>
     <string name="facebook_button">Inicia sesion con Facebook</string>
     <string name="login_email_button">Iniciar sesion con Email</string>
-    <string name="register_singup" translatable="true">¿No tienes una cuenta?, Registrate</string>
+    <string name="register_singup">¿No tienes una cuenta?, Registrate</string>
+
+    <string name="insert_email">Inserta tu Email</string>
+
+    <string name="example_email">ejemplo@mail.com</string>
+
+
+    <string name="terms_and_conditions">Estoy de acuerdo con los terminos &amp; condiciones y Política de privacidad</string>
+    <string name="button_next">SIGUIENTE</string>
 </resources>
