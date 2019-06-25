@@ -18,6 +18,7 @@ public class LoginOrSingUPActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login_or_sing_up);
 
         //setContentView(R.layout.activity_login_or_sing_up);
+
         // Click para cambiar de activity
         TextView register = (TextView) findViewById(R.id.tvRegister);
         register.setOnClickListener(new View.OnClickListener() {

@@ -10,18 +10,24 @@
     <!-- Pantallas de Registro-->
     <string name="insert_email">Inserta tu Email</string>
     <string name="example_email">ejemplo@mail.com</string>
-    <string name="terms_and_conditions">Estoy de acuerdo con los terminos &amp; condiciones y Política de privacidad</string>
+    <string name="terms_and_conditions">Estoy de acuerdo con los terminos,&#xA; condiciones y Política de privacidad</string>
     <string name="button_next">SIGUIENTE</string>
     <string name="verification_title">Verificación</string>
     <string name="password_tittle">Inserta una contraseña &#xA;para tu cuenta</string>
     <string name="password_input">Contraseña</string>
     <string name="repeat_password_input">Repita su contraseña</string>
     <string name="name_lastname_tittle">¿Cuál es tu nombre?</string>
-    <string name="name_register" translatable="true">Nombre</string>
-    <string name="last_name" translatable="true">Apellidos</string>
-    <string name="calendar_age" translatable="true">¿Dinos, cuál es tu edad?</string>
-    <string name="sex_tittle" translatable="true">Eres un/una…?</string>
+    <string name="name_register" >Nombre</string>
+    <string name="last_name" >Apellidos</string>
+    <string name="calendar_age" >¿Dinos, cuál es tu edad?</string>
+    <string name="sex_tittle" >Eres un/una…?</string>
     <string name="male">HOMBRE</string>
     <string name="insert_phone_number">Por favor, &#xA; inserta tu número telefónico</string>
     <string name="talk_more_about_you">Cuentanos más sobre ti</string>
+    <string name="profession" >Profession</string>
+    <string name="how_do_you_do" >¿A qué te dedicas?</string>
+    <string name="student" >¿Estudias?</string>
+    <string name="study" >Qué estas estudiando?</string>
+    <string name="other" >Otras actividades…</string>
+    <string name="other_atributte">¿Cúal tu otra actividad?</string>
 </resources>

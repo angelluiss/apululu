@@ -24,6 +24,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/llButtonProfession"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="310dp"
@@ -36,18 +37,71 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Profession"
+                    android:text="@string/profession"
                     android:textSize="20sp"/>
 
             </LinearLayout>
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llButtonStudent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/llButtonProfession"
+            android:layout_marginTop="50dp"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_rounded_gray"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/student"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llButtonOther"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/llButtonStudent"
+            android:layout_marginTop="50dp"
+            android:gravity="center">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_rounded_gray"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="@string/other"/>
+            </LinearLayout>
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="360dp">
+            android:layout_alignTop="@+id/llButtonOther"
+            android:layout_marginTop="150dp"
+            android:gravity="center">
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@drawable/button_rounded_white">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_next"
+                    android:textSize="24sp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 

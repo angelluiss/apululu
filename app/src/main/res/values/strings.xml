@@ -11,7 +11,7 @@
     <!-- Pantallas de Registro-->
     <string name="insert_email" translatable="true">Insert your Email</string>
     <string name="example_email" translatable="true">example@mail.com</string>
-    <string name="terms_and_conditions" translatable="true">I agree to the Terms &amp; Agreements and Privacy Policy</string>
+    <string name="terms_and_conditions" translatable="true">I agree with Terms,&#xA; Agreements and Privacy Policy</string>
     <string name="button_next" translatable="true">NEXT</string>
     <string name="verification_title" translatable="true">Verification</string>
     <string name="password_tittle" translatable="true">Insert a password &#xA; to your account</string>
@@ -25,4 +25,10 @@
     <string name="male" translatable="true">MAN</string>
     <string name="insert_phone_number" translatable="true">Please, &#xA; insert your phone number</string>
     <string name="talk_more_about_you" translatable="true">Talk us,&#xA; more about you</string>
+    <string name="profession" translatable="true">Profession</string>
+    <string name="how_do_you_do" translatable="true">How do you do?</string>
+    <string name="student" translatable="true">Are you a student?</string>
+    <string name="study" translatable="true">What are you studying?</string>
+    <string name="other" translatable="true">Other Activities…</string>
+    <string name="other_atributte" translatable="true">What is your other activity?</string>
 </resources>

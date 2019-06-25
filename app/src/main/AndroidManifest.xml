@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.InsertOtherActivity"></activity>
+        <activity android:name=".activity.OtherAtributteActivity"></activity>
+        <activity android:name=".activity.StudentAtributteActivity" />
+        <activity android:name=".activity.ProfessionAtributteActivity" />
+        <activity android:name=".activity.InsertOtherActivity" />
         <activity android:name=".activity.InsertPhoneActivity" />
         <activity android:name=".activity.InsertMaleFemaleActivity" />
         <activity android:name=".activity.InsertCalendarActivity" />

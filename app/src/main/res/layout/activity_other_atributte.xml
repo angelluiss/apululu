@@ -1,9 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_register"
+    android:orientation="vertical"
     tools:context=".activity.OtherAtributteActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="172dp"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/other_atributte"
+                android:textSize="25sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/llButtonOther2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="340dp"
+            android:gravity="center">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_rounded_blue"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/other"
+                    android:textSize="25sp"
+                    android:textColor="@color/color_white"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/llInputOther"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignTop="@id/llButtonOther2"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp">
+            <MultiAutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/button_rounded_gray"
+                android:textColorHint="@color/color_white"
+                android:textColor="@color/black"
+                android:textAlignment="center" />
 
-</android.support.constraint.ConstraintLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llButtonOtherNext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/llInputOther"
+            android:layout_marginTop="200dp"
+            android:orientation="vertical"
+            android:gravity="center">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_rounded_white"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_next"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

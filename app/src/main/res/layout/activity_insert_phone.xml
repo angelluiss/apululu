@@ -36,7 +36,7 @@
                 android:ems="10"
                 android:inputType="phone"
                 android:textSize="20sp"
-                android:hint="413 025 1144"/>
+                android:hint="4130251144"/>
 
         </LinearLayout>
 
