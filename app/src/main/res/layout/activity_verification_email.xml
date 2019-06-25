@@ -48,14 +48,14 @@
                 android:id="@+id/llVerificationBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_button_gradient_solid"
+                android:background="@drawable/button_rounded_white"
                 android:gravity="center">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/button_next"
                     android:textSize="25sp"
-                    android:textColor="@color/color_white"/>
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 

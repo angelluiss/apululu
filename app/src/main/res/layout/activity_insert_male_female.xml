@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@drawable/background_register"
     tools:context=".activity.InsertMaleFemaleActivity">
 
@@ -39,6 +40,40 @@
                     android:text="@string/male"
                     android:textColor="@color/color_white"
                     android:textSize="25sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="390dp"
+            android:gravity="center">
+            <Button
+                android:id="@+id/buttonFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_rounded_gray"
+                android:text="@string/male"
+                android:textColor="@color/color_white"
+                android:textSize="25sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="517dp">
+            <LinearLayout
+                android:id="@+id/llButtonMaleFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_rounded_white"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_next"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
         </LinearLayout>

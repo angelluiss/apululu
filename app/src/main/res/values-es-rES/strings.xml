@@ -22,4 +22,6 @@
     <string name="calendar_age" translatable="true">¿Dinos, cuál es tu edad?</string>
     <string name="sex_tittle" translatable="true">Eres un/una…?</string>
     <string name="male">HOMBRE</string>
+    <string name="insert_phone_number">Por favor, &#xA; inserta tu número telefónico</string>
+    <string name="talk_more_about_you">Cuentanos más sobre ti</string>
 </resources>

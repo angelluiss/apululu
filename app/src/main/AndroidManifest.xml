@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.InsertMaleFemaleActivity"></activity>
+        <activity android:name=".activity.InsertOtherActivity"></activity>
+        <activity android:name=".activity.InsertPhoneActivity" />
+        <activity android:name=".activity.InsertMaleFemaleActivity" />
         <activity android:name=".activity.InsertCalendarActivity" />
         <activity android:name=".activity.InsertNameActivity" />
         <activity android:name=".activity.InsertPasswordActivity" />
