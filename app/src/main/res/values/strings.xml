@@ -23,6 +23,7 @@
     <string name="calendar_age" translatable="true">Tell us, how old are you?</string>
     <string name="sex_tittle" translatable="true">Are you a..?</string>
     <string name="male" translatable="true">MAN</string>
+    <string name="female" translatable="true">WOMAN</string>
     <string name="insert_phone_number" translatable="true">Please, &#xA; insert your phone number</string>
     <string name="talk_more_about_you" translatable="true">Talk us,&#xA; more about you</string>
     <string name="profession" translatable="true">Profession</string>
@@ -31,4 +32,5 @@
     <string name="study" translatable="true">What are you studying?</string>
     <string name="other" translatable="true">Other Activities…</string>
     <string name="other_atributte" translatable="true">What is your other activity?</string>
+
 </resources>

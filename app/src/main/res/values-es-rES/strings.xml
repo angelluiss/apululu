@@ -22,6 +22,7 @@
     <string name="calendar_age" >¿Dinos, cuál es tu edad?</string>
     <string name="sex_tittle" >Eres un/una…?</string>
     <string name="male">HOMBRE</string>
+    <string name="female">MUJER</string>
     <string name="insert_phone_number">Por favor, &#xA; inserta tu número telefónico</string>
     <string name="talk_more_about_you">Cuentanos más sobre ti</string>
     <string name="profession" >Profession</string>
