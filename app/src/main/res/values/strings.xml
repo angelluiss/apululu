@@ -32,5 +32,6 @@
     <string name="study" translatable="true">What are you studying?</string>
     <string name="other" translatable="true">Other Activities…</string>
     <string name="other_atributte" translatable="true">What is your other activity?</string>
+    <string name="student_button" translatable="true">Write here..</string>
 
 </resources>

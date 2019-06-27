@@ -30,10 +30,15 @@
             android:layout_marginTop="310dp"
             android:gravity="center">
             <LinearLayout
+                android:id="@+id/llBtnProfession"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_rounded_gray"
                 android:gravity="center">
+                <CheckBox
+                    android:id="@+id/cbProfession"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -52,11 +57,15 @@
             android:gravity="center">
 
             <LinearLayout
+                android:id="@+id/llBtnStudent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_rounded_gray"
                 android:gravity="center">
-
+                <CheckBox
+                    android:id="@+id/cbStudent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -73,10 +82,15 @@
             android:layout_marginTop="50dp"
             android:gravity="center">
             <LinearLayout
+                android:id="@+id/llBtnOther"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_rounded_gray"
                 android:gravity="center">
+                <CheckBox
+                    android:id="@+id/cbOther"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -92,6 +106,7 @@
             android:layout_marginTop="150dp"
             android:gravity="center">
             <LinearLayout
+                android:id="@+id/llButtonOtherNext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
