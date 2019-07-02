@@ -33,5 +33,6 @@
     <string name="other" translatable="true">Other Activities…</string>
     <string name="other_atributte" translatable="true">What is your other activity?</string>
     <string name="student_button" translatable="true">Write here..</string>
+    <string name="register_success" translatable="true">You have been registered successfully</string>
 
 </resources>

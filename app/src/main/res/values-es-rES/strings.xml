@@ -32,4 +32,5 @@
     <string name="other" >Otras actividades…</string>
     <string name="other_atributte">¿Cúal es tu otra actividad?</string>
     <string name="student_button">Esctibe aquí..</string>
+    <string name="register_success">Te has registado con éxito</string>
 </resources>
