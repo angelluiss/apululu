@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.RegisterSuccesActivity"></activity>
+        <activity android:name=".activity.ProfileLikeDislikeActivity"></activity>
         <activity android:name=".activity.OtherAtributteActivity" />
         <activity android:name=".activity.StudentAtributteActivity" />
         <activity android:name=".activity.ProfessionAtributteActivity" />

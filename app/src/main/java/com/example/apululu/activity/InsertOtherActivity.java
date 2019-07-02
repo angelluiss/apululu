@@ -9,9 +9,13 @@ import android.widget.LinearLayout;
 
 import com.example.apululu.R;
 
+
+
 public class InsertOtherActivity extends AppCompatActivity {
 
     int casesOther = 0;
+
+    String[] selector = {"", "", ""};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +39,12 @@ public class InsertOtherActivity extends AppCompatActivity {
                 if(!professionCB.isChecked()){
                     professionCB.setChecked(true);
                     casesOther++;
+                    selector [0] = "profession";
                     professionLayout.setBackgroundResource(R.drawable.button_rounded_blue);
                 }else {
                     professionCB.setChecked(false);
                     casesOther--;
+                    selector [0] = "";
                     professionLayout.setBackgroundResource(R.drawable.button_rounded_gray);
                 }
             }
@@ -49,10 +55,12 @@ public class InsertOtherActivity extends AppCompatActivity {
                 if(!professionCB.isChecked()){
                     professionCB.setChecked(true);
                     casesOther++;
+                    selector [0] = "profession";
                     professionLayout.setBackgroundResource(R.drawable.button_rounded_blue);
                 }else {
                     professionCB.setChecked(false);
                     casesOther--;
+                    selector [0] = "";
                     professionLayout.setBackgroundResource(R.drawable.button_rounded_gray);
                 }
             }
@@ -65,10 +73,12 @@ public class InsertOtherActivity extends AppCompatActivity {
                 if(!studentCB.isChecked()){
                     studentCB.setChecked(true);
                     casesOther++;
+                    selector [1] = "student";
                     studentLayout.setBackgroundResource(R.drawable.button_rounded_blue);
                 }else {
                     studentCB.setChecked(false);
                     casesOther--;
+                    selector [1] = "";
                     studentLayout.setBackgroundResource(R.drawable.button_rounded_gray);
                 }
             }
@@ -79,10 +89,12 @@ public class InsertOtherActivity extends AppCompatActivity {
                 if(!studentCB.isChecked()){
                     studentCB.setChecked(true);
                     casesOther++;
+                    selector [1] = "student";
                     studentLayout.setBackgroundResource(R.drawable.button_rounded_blue);
                 }else {
                     studentCB.setChecked(false);
                     casesOther--;
+                    selector [1] = "";
                     studentLayout.setBackgroundResource(R.drawable.button_rounded_gray);
                 }
             }
@@ -95,10 +107,12 @@ public class InsertOtherActivity extends AppCompatActivity {
                 if(!otherCB.isChecked()){
                     otherCB.setChecked(true);
                     casesOther++;
+                    selector [2] = "other";
                     otherLayout.setBackgroundResource(R.drawable.button_rounded_blue);
                 }else {
                     otherCB.setChecked(false);
                     casesOther--;
+                    selector [2] = "";
                     otherLayout.setBackgroundResource(R.drawable.button_rounded_gray);
                 }
             }
@@ -109,10 +123,12 @@ public class InsertOtherActivity extends AppCompatActivity {
                 if(!otherCB.isChecked()){
                     otherCB.setChecked(true);
                     casesOther++;
+                    selector [2] = "other";
                     otherLayout.setBackgroundResource(R.drawable.button_rounded_blue);
                 }else {
                     otherCB.setChecked(false);
                     casesOther--;
+                    selector [2] = "";
                     otherLayout.setBackgroundResource(R.drawable.button_rounded_gray);
                 }
             }
@@ -124,20 +140,17 @@ public class InsertOtherActivity extends AppCompatActivity {
                 buttonNext.setBackgroundResource(R.drawable.rounded_button_gradient_solid);
 
                 if(professionCB.isChecked()){
-                    Bundle parametros = new Bundle();
                     Intent intent = new Intent(InsertOtherActivity.this,ProfessionAtributteActivity.class);
-                    intent.putExtra("Profession","profession");
+                    intent.putExtra("Selected",selector);
                     startActivity(intent);
                 }else if(studentCB.isChecked()){
                     Intent intent = new Intent(InsertOtherActivity.this,StudentAtributteActivity.class);
-                    intent.putExtra("Student", "student");
+                    intent.putExtra("Selected", selector);
                     startActivity(intent);
                 }else if(otherCB.isChecked()){
                     Intent intent = new Intent(InsertOtherActivity.this,OtherAtributteActivity.class);
-                    intent.putExtra("Other", "other");
+                    intent.putExtra("Selected", selector);
                     startActivity(intent);
-                }else{
-                    //Intent Activity Success Register
                 }
             }
         });
