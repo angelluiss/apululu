@@ -9,7 +9,6 @@ import android.widget.Toast;
 import es.dmoral.toasty.Toasty;
 import com.example.apululu.R;
 
-import java.util.ArrayList;
 
 public class ProfessionAtributteActivity extends AppCompatActivity {
 

@@ -24,7 +24,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // Swipe Card Inicialización del Array list
+        // Swipe Card Inicialization del Array list
         al = new ArrayList<>();
         al.add("php");
         al.add("c");
@@ -35,7 +35,7 @@ public class HomeActivity extends AppCompatActivity {
         al.add("css");
         al.add("javascript");
 
-        arrayAdapter = new ArrayAdapter<>(this, R.layout.item, R.id.helloText, al );
+        arrayAdapter = new ArrayAdapter<>(this, R.layout.item, R.id.name, al );
 
         SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
 

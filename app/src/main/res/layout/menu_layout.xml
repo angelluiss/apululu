@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:id="@+id/llMenuUp"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:orientation="horizontal"
+        android:background="#3498DB"
+        android:gravity="center">
+        <LinearLayout
+            android:id="@+id/llProfileButton"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:background="@drawable/white_circle"
+            android:gravity="center"
+            android:padding="3dp"
+            android:layout_gravity="center"
+            android:layout_margin="5dp">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/profile_icon" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginHorizontal="120dp">
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/scButtonProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/llFeedButton"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:background="@drawable/white_circle"
+            android:gravity="center"
+            android:padding="3dp"
+            android:layout_gravity="center"
+            android:layout_margin="5dp">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/feed_icon" />
+        </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+</FrameLayout>

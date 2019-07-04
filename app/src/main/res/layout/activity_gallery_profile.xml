@@ -1,9 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.GalleryProfileActivity">
+    tools:context=".activity.GalleryProfileActivity"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <include
+        layout="@layout/menu_layout"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="3dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/llPhoto1"
+                android:layout_width="134dp"
+                android:layout_height="134dp"
+                android:layout_margin="3dp"
+                android:background="@drawable/fondo_gallery">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llPhoto2"
+                android:layout_width="164dp"
+                android:layout_height="277dp"
+                android:layout_margin="3dp"
+                android:background="@drawable/fondo_gallery"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@+id/llPhoto1">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llPhoto3"
+                android:layout_width="134dp"
+                android:layout_height="277dp"
+                android:layout_below="@+id/llPhoto1"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/fondo_gallery">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llPhoto4"
+                android:layout_width="114dp"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/llPhoto2"
+                android:layout_toEndOf="@+id/llPhoto3"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/fondo_gallery">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llPhoto5"
+                android:layout_width="match_parent"
+                android:layout_height="134dp"
+                android:layout_below="@+id/llPhoto2"
+                android:layout_toEndOf="@+id/llPhoto4"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/fondo_gallery">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llPhoto6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/llPhoto3"
+                android:layout_toStartOf="@+id/llPhoto4"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/fondo_gallery">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llPhoto7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/llPhoto5"
+                android:layout_toEndOf="@+id/llPhoto4"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/fondo_gallery">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>
