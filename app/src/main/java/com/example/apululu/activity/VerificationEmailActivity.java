@@ -59,7 +59,7 @@ public class VerificationEmailActivity extends AppCompatActivity {
         });
     }
 
-    String url ="http://192.168.2.115:3000/api/auth/verify-email/check-token";
+    String url ="http://192.168.2.117:3000/api/auth/verify-email/check-token";
     // *** POST ***
     public void postData(String url, JSONObject dataJSON){
         RequestQueue requstQueue = Volley.newRequestQueue(this);

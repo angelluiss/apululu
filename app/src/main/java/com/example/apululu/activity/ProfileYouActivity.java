@@ -1,7 +1,10 @@
 package com.example.apululu.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
@@ -10,6 +13,9 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.apululu.R;
+import com.example.apululu.adapter.ViewProfilesDatesAdapter;
+import com.example.apululu.fragment.Profile1Fragment;
+import com.example.apululu.fragment.Profile2Fragment;
 import com.fangxu.allangleexpandablebutton.AllAngleExpandableButton;
 import com.fangxu.allangleexpandablebutton.ButtonData;
 import com.fangxu.allangleexpandablebutton.ButtonEventListener;
@@ -19,7 +25,8 @@ import java.util.List;
 
 import static android.widget.Toast.LENGTH_LONG;
 
-public class ProfileYouActivity extends AppCompatActivity {
+public class ProfileYouActivity extends AppCompatActivity implements Profile1Fragment.OnFragmentInteractionListener,
+        Profile2Fragment.OnFragmentInteractionListener {
 
 
 
@@ -28,8 +35,11 @@ public class ProfileYouActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_you);
 
+        final ViewPager views = (ViewPager)findViewById(R.id.vpDatosProfile1);
+
         SwitchCompat playGame = (SwitchCompat) findViewById(R.id.scPlayGame);
 
+        PagerAdapter adapter = new ViewProfilesDatesAdapter(getSupportFragmentManager(), 2);
         playGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,10 +48,10 @@ public class ProfileYouActivity extends AppCompatActivity {
             }
         });
 
+        views.setAdapter(adapter);
+
         // **** Botón Menu Redondo
         installButton110to250();
-
-
 
 
     }
@@ -51,10 +61,10 @@ public class ProfileYouActivity extends AppCompatActivity {
     private void installButton110to250() {
         final AllAngleExpandableButton button = (AllAngleExpandableButton) findViewById(R.id.button_expandable_110_250);
         final List<ButtonData> buttonDatas = new ArrayList<>();
-        int[] drawable = {R.drawable.edit,R.drawable.refresh, R.drawable.mark, R.drawable.settings};
-        int[] color = {R.color.black, R.color.color_white, R.color.color_white, R.color.color_white};
+        int[] drawable = {R.drawable.plus,R.drawable.refresh, R.drawable.mark, R.drawable.settings,R.drawable.plus};
+        int[] color = {R.color.colorPrimary, R.color.color_gray, R.color.color_gray, R.color.color_gray, R.color.color_gray};
 
-        for (int i = 0; i < 4; i++){
+        for (int i = 0; i < 5; i++){
             ButtonData buttonData;
             if(i==0){
                 buttonData = ButtonData.buildIconButton(this, drawable[i],15);
@@ -79,7 +89,11 @@ public class ProfileYouActivity extends AppCompatActivity {
                         break;
                     case 2:Toast.makeText(ProfileYouActivity.this, "button " + i + " Clicked, Case 2", LENGTH_LONG).show();
                         break;
-                    case 3:Toast.makeText(ProfileYouActivity.this, "button " + i + " Clicked, Case 3", LENGTH_LONG).show();
+                    case 3:
+                        Intent intent = new Intent(ProfileYouActivity.this,GalleryProfileActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 4:Toast.makeText(ProfileYouActivity.this, "button " + i + " Clicked, Case 3", LENGTH_LONG).show();
                         break;
                 }
             }
@@ -94,5 +108,10 @@ public class ProfileYouActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
