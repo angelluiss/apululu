@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <LinearLayout
+
+    <RelativeLayout
         android:id="@+id/llMenuUp"
         android:layout_width="match_parent"
         android:layout_height="69dp"
@@ -14,24 +15,25 @@
             android:id="@+id/llProfileButton"
             android:layout_width="43dp"
             android:layout_height="43dp"
-            android:background="@drawable/white_circle"
+            android:background="@drawable/big_circle_image"
             android:gravity="center"
             android:padding="3dp"
             android:layout_gravity="center"
-            android:layout_margin="5dp">
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="20dp">
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/profile_icon" />
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/icon_profile_big" />
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_width="104dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:layout_marginHorizontal="120dp">
+            android:background="@drawable/botton_center_background">
             <android.support.v7.widget.SwitchCompat
-                android:id="@+id/scButtonProfile"
+                android:id="@+id/scPlayGame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -39,16 +41,17 @@
             android:id="@+id/llFeedButton"
             android:layout_width="43dp"
             android:layout_height="43dp"
-            android:background="@drawable/white_circle"
+            android:background="@drawable/big_circle_image"
             android:gravity="center"
             android:padding="3dp"
             android:layout_gravity="center"
-            android:layout_margin="5dp">
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="20dp">
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/feed_icon" />
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/feed_icon_big" />
         </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 </FrameLayout>

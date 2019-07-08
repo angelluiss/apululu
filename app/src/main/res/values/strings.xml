@@ -35,4 +35,7 @@
     <string name="student_button" translatable="true">Write here..</string>
     <string name="register_success" translatable="true">You have been registered successfully</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

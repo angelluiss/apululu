@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.apululu">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.GalleryProfileActivity"></activity>
+        <activity android:name=".activity.ChataAndNotificationActivity"></activity>
+        <activity android:name=".activity.ProfileYouActivity" />
+        <activity android:name=".activity.GalleryProfileActivity" />
         <activity android:name=".activity.HomeActivity" />
         <activity android:name=".activity.ProfileLikeDislikeActivity" />
         <activity android:name=".activity.OtherAtributteActivity" />
@@ -31,6 +36,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.LoginOrSingUPActivity" />
+
+        <service android:name=".utils.InternetStateService"/>
     </application>
 
 </manifest>

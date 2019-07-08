@@ -1,10 +1,12 @@
 package com.example.apululu.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.apululu.R;
@@ -23,6 +25,29 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+
+        LinearLayout buttonProfile1 = (LinearLayout) findViewById(R.id.llProfileButton);
+        LinearLayout buttonFeed1 = (LinearLayout) findViewById(R.id.llFeedButton);
+
+        // **** Evento clik de Profile Button Menu
+        buttonFeed1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentFeed = new Intent(HomeActivity.this, ChataAndNotificationActivity.class);
+                startActivity(intentFeed);
+            }
+        });
+
+        // **** Evento clik de Profile Button Menu
+        buttonProfile1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentProfile = new Intent(HomeActivity.this, ProfileYouActivity.class);
+                startActivity(intentProfile);
+            }
+        });
+
 
         // Swipe Card Inicialization del Array list
         al = new ArrayList<>();
