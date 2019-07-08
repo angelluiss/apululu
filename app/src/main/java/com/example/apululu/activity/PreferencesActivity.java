@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.apululu.R;
 
@@ -33,7 +32,10 @@ public class PreferencesActivity extends AppCompatActivity {
         //** Instancia del Seek bar Distancia
         final SeekBar seekBarDistance = (SeekBar)findViewById(R.id.sbDistancePreference);
         final TextView seekbarTextDistance = (TextView) findViewById(R.id.tvSBDistance);
-
+        
+        seekBarAge.setProgress(18);
+        seekbarTextDistance.setText("200");
+        seekBarDistance.setProgress(200);
         //*** Mostrar el valor de la barra de edad
         seekBarAge.setOnSeekBarChangeListener (new OnSeekBarChangeListener() {
 
@@ -57,7 +59,7 @@ public class PreferencesActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 final int seekBarDistanceValue = seekBarDistance.getProgress();
                 final String sBdistanceValue = Integer.toString(seekBarDistanceValue);
-                seekbarText.setText(sBdistanceValue);
+                seekbarTextDistance.setText(sBdistanceValue);
             }
 
             @Override
