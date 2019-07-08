@@ -36,7 +36,7 @@ public class ProfileYouActivity extends AppCompatActivity implements Profile1Fra
         setContentView(R.layout.activity_profile_you);
 
         final ViewPager views = (ViewPager)findViewById(R.id.vpDatosProfile1);
-
+        LinearLayout buttonFeed = (LinearLayout) findViewById(R.id.llFeedButton);
         SwitchCompat playGame = (SwitchCompat) findViewById(R.id.scPlayGame);
 
         PagerAdapter adapter = new ViewProfilesDatesAdapter(getSupportFragmentManager(), 2);
@@ -45,6 +45,14 @@ public class ProfileYouActivity extends AppCompatActivity implements Profile1Fra
             public void onClick(View v) {
                 Intent intentPlayGame = new Intent(ProfileYouActivity.this,HomeActivity.class);
                 startActivity(intentPlayGame);
+            }
+        });
+
+        buttonFeed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileYouActivity.this, ChataAndNotificationActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -100,7 +108,7 @@ public class ProfileYouActivity extends AppCompatActivity implements Profile1Fra
 
             @Override
             public void onExpand() {
-                Toast.makeText(ProfileYouActivity.this,"Se expandio", LENGTH_LONG).show();
+
             }
 
             @Override
