@@ -42,9 +42,9 @@
     <string name="study_preference_button" translatable="true">STUDY</string>
     <string name="other_preference_button" translatable="true">There is no preference</string>
     <string name="regilion_preference" translatable="true">Religion</string>
-    <string name="select_religion" translatable="true">Write your religion preference</string>
+    <string name="select_religion" translatable="true">Catholic</string>
     <string name="nationality_preference" translatable="true">Nationality</string>
-    <string name="select_nationality" translatable="true">Write your nationality preference</string>
+    <string name="select_nationality" translatable="true">Canada</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
