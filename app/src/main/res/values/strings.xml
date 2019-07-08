@@ -34,8 +34,20 @@
     <string name="other_atributte" translatable="true">What is your other activity?</string>
     <string name="student_button" translatable="true">Write here..</string>
     <string name="register_success" translatable="true">You have been registered successfully</string>
+    <string name="gender_prefence" translatable="true">Gender</string>
+    <string name="Age_prefence" translatable="true">Age</string>
+    <string name="distance_prefence" translatable="true">Distance</string>
+    <string name="work_preference" translatable="true">What do you prefer him / her to do?</string>
+    <string name="work_preference_button" translatable="true">WORK</string>
+    <string name="study_preference_button" translatable="true">STUDY</string>
+    <string name="other_preference_button" translatable="true">There is no preference</string>
+    <string name="regilion_preference" translatable="true">Religion</string>
+    <string name="select_religion" translatable="true">Write your religion preference</string>
+    <string name="nationality_preference" translatable="true">Nationality</string>
+    <string name="select_nationality" translatable="true">Write your nationality preference</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

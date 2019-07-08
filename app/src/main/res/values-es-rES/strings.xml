@@ -33,4 +33,16 @@
     <string name="other_atributte">¿Cúal es tu otra actividad?</string>
     <string name="student_button">Esctibe aquí..</string>
     <string name="register_success">Te has registado con éxito</string>
+    <string name="gender_prefence" >Gender</string>
+    <string name="Age_prefence" >Edad</string>
+    <string name="distance_prefence">Distancia</string>
+    <string name="work_preference">¿Que prefieres que él/ella haga?</string>
+    <string name="work_preference_button">TRABAJE</string>
+    <string name="study_preference_button" translatable="true">ESTUDIE</string>
+    <string name="other_preference_button" translatable="true">No hay preferencia</string>
+    <string name="regilion_preference" translatable="true">Religión</string>
+    <string name="select_religion" >Escribe tu preferencia de religión</string>
+    <string name="nationality_preference">Nationality</string>
+    <string name="select_nationality">Write your nationality preference</string>
+
 </resources>

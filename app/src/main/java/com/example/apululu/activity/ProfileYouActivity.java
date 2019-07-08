@@ -36,10 +36,15 @@ public class ProfileYouActivity extends AppCompatActivity implements Profile1Fra
         setContentView(R.layout.activity_profile_you);
 
         final ViewPager views = (ViewPager)findViewById(R.id.vpDatosProfile1);
+
+        // *** Instancia del los Widgets del menú
         LinearLayout buttonFeed = (LinearLayout) findViewById(R.id.llFeedButton);
         SwitchCompat playGame = (SwitchCompat) findViewById(R.id.scPlayGame);
 
+        //*** Creacion del adaptador para el view de los parametros de la persona
         PagerAdapter adapter = new ViewProfilesDatesAdapter(getSupportFragmentManager(), 2);
+
+
         playGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,11 +100,13 @@ public class ProfileYouActivity extends AppCompatActivity implements Profile1Fra
                     case 1:
                         Toast.makeText(ProfileYouActivity.this, "button " + i + " Clicked, Case 1", LENGTH_LONG).show();
                         break;
-                    case 2:Toast.makeText(ProfileYouActivity.this, "button " + i + " Clicked, Case 2", LENGTH_LONG).show();
-                        break;
-                    case 3:
+                    case 2:
                         Intent intent = new Intent(ProfileYouActivity.this,GalleryProfileActivity.class);
                         startActivity(intent);
+                        break;
+                    case 3:
+                        Intent intent2 = new Intent(ProfileYouActivity.this,PreferencesActivity.class);
+                        startActivity(intent2);
                         break;
                     case 4:Toast.makeText(ProfileYouActivity.this, "button " + i + " Clicked, Case 3", LENGTH_LONG).show();
                         break;
