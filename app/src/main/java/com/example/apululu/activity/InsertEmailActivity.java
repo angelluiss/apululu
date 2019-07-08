@@ -71,6 +71,8 @@ public class InsertEmailActivity extends AppCompatActivity {
     }
 
     String url ="http://192.168.2.117:3000/api/auth/verify-email";
+
+
     // *** POST ***
     public void postData(String url,JSONObject dataJSON){
         RequestQueue requstQueue = Volley.newRequestQueue(this);

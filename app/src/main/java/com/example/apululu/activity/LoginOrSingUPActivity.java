@@ -33,7 +33,7 @@ public class LoginOrSingUPActivity extends AppCompatActivity {
         loginEmailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(LoginOrSingUPActivity.this,HomeActivity.class);
+                Intent intent2 = new Intent(LoginOrSingUPActivity.this,LoginActivity.class);
                 startActivity(intent2);
             }
         });

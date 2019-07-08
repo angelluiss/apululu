@@ -10,12 +10,28 @@
         android:id="@+id/menuPreference"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:id="@+id/llTittlePreference"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/menuPreference"
+        android:background="#3498DB"
+        android:gravity="center"
+        android:padding="6dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Preference"
+            android:textSize="25sp"
+            android:textColor="@color/color_white"
+            android:textStyle="bold"/>
+    </LinearLayout>
     <ScrollView
         android:id="@+id/svPreference"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fillViewport="false"
-        android:layout_below="@+id/menuPreference">
+        android:layout_below="@+id/llTittlePreference">
         <RelativeLayout
             android:id="@+id/rlGender"
             android:layout_width="match_parent"
