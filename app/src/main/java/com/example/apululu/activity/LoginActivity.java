@@ -1,5 +1,7 @@
 package com.example.apululu.activity;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
@@ -24,14 +26,17 @@ import es.dmoral.toasty.Toasty;
 
 public class LoginActivity extends AppCompatActivity {
 
+    TextInputEditText userEmail;
+    TextInputEditText userPassword;
+    private AccountManager accountManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         LinearLayout buttonNext = (LinearLayout) findViewById(R.id.buttonNextLogin);
-        final TextInputEditText userEmail = (TextInputEditText) findViewById(R.id.tiUser);
-        final TextInputEditText userPassword = (TextInputEditText) findViewById(R.id.tiPassword);
+        userEmail = (TextInputEditText) findViewById(R.id.tiUser);
+        userPassword = (TextInputEditText) findViewById(R.id.tiPassword);
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,8 +50,11 @@ public class LoginActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 postData(url, dataJSON);
+                createAccount();
             }
         });
+
+        accountManager = AccountManager.get(this);
 
     }
 
@@ -80,5 +88,18 @@ public class LoginActivity extends AppCompatActivity {
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requstQueue.add(jsonobj);
+    }
+
+    private void createAccount(){
+        Account mCurrentAccount = new Account(userEmail.getText().toString(), "com.example.apululu");
+
+        Bundle userData = new Bundle();
+        boolean addAccountResult = (boolean) accountManager.addAccountExplicitly(mCurrentAccount, "12345678",userData);
+
+        if(addAccountResult){
+            Toasty.success(LoginActivity.this, "Account Added",Toasty.LENGTH_SHORT).show();
+        }else{
+            Toasty.success(LoginActivity.this, "Account already Exist",Toasty.LENGTH_SHORT).show();
+        }
     }
 }
