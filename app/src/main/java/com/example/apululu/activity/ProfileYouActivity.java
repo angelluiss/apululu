@@ -108,7 +108,9 @@ public class ProfileYouActivity extends AppCompatActivity implements Profile1Fra
                         Intent intent2 = new Intent(ProfileYouActivity.this,PreferencesActivity.class);
                         startActivity(intent2);
                         break;
-                    case 4:Toast.makeText(ProfileYouActivity.this, "button " + i + " Clicked, Case 3", LENGTH_LONG).show();
+                    case 4:
+                        Intent intent3 = new Intent(ProfileYouActivity.this,SettingsProfileActivity.class);
+                        startActivity(intent3);
                         break;
                 }
             }

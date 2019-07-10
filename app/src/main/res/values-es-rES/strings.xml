@@ -44,5 +44,7 @@
     <string name="select_religion">Católico</string>
     <string name="nationality_preference">Nationality</string>
     <string name="select_nationality">Cánada</string>
+    <string name="setting_profile_tittle">Ajustes</string>
+    <string name="city_settings_profile">¿Donde vives?</string>
 
 </resources>
