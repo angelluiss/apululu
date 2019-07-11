@@ -38,8 +38,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }, 10000);
 
-        Context thisContex =MainActivity.this;
-        startService(new Intent(thisContex,InternetStateService.class));
+
 
       //  RequestQueue queue = Volley.newRequestQueue(this);
 

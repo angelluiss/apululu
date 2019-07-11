@@ -9,13 +9,18 @@ import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.example.apululu.R;
 import com.example.apululu.adapter.PagerTabAdapter;
 
 public class ChataAndNotificationActivity extends AppCompatActivity {
 
-    private int numberTabs;
+    String[] nameArray = {"Karla Peña", "Sofia Vergara", "Mia Khalifa", "Amanda Rimkjock"};
+    String[] infoArray = {"It's Matched with you", "Likes you", "Send you a message", "Send you a message"};
+    Integer[] imageArray = {R.drawable.heart_1_like, R.drawable.heart_1_like,R.drawable.feed_icon_big,R.drawable.feed_icon_big};
+
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

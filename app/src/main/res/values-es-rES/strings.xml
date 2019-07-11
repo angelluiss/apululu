@@ -46,5 +46,6 @@
     <string name="select_nationality">Cánada</string>
     <string name="setting_profile_tittle">Ajustes</string>
     <string name="city_settings_profile">¿Donde vives?</string>
+    <string name="cerrar_sesion" translatable="true">Logout</string>
 
 </resources>

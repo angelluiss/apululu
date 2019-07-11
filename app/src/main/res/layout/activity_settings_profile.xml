@@ -240,6 +240,7 @@
                 android:textStyle="bold"
                 android:layout_below="@+id/llOtherPreference"/>
             <LinearLayout
+                android:id="@+id/llPhoneNumberAjustes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -257,6 +258,51 @@
                     android:layout_margin="10dp"
                     android:textSize="20sp"/>
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llLogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/button_rounded_white"
+                android:gravity="center"
+                android:layout_below="@+id/llPhoneNumberAjustes">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cerrar_sesion"
+                    android:textSize="18sp"
+                    android:textColor="@color/color_blue_cute"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/color_gray"
+                android:layout_below="@+id/llLogout">
+                <LinearLayout
+                    android:id="@+id/llFooter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="10dp"
+                    android:gravity="center">
+                    <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/footer"
+                    android:textSize="12sp"
+                    android:textColor="@color/color_white"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="7dp" />
+                </LinearLayout>
+
+            </RelativeLayout>
         </RelativeLayout>
 
 
