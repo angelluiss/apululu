@@ -10,12 +10,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileLikeDislikeActivity extends AppCompatActivity {
 
-    CircleImageView imageProfile = (CircleImageView) findViewById(R.id.profile_image);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_like_dislike);
+
+        CircleImageView imageProfile = (CircleImageView) findViewById(R.id.profile_image);
 
         Picasso.get().load(R.drawable.imagen_perfil).into(imageProfile);
     }

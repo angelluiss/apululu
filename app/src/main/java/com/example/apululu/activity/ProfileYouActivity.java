@@ -1,13 +1,18 @@
 package com.example.apululu.activity;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -16,6 +21,7 @@ import com.example.apululu.R;
 import com.example.apululu.adapter.ViewProfilesDatesAdapter;
 import com.example.apululu.fragment.Profile1Fragment;
 import com.example.apululu.fragment.Profile2Fragment;
+import com.example.apululu.utils.NotificationHandler;
 import com.fangxu.allangleexpandablebutton.AllAngleExpandableButton;
 import com.fangxu.allangleexpandablebutton.ButtonData;
 import com.fangxu.allangleexpandablebutton.ButtonEventListener;
@@ -28,7 +34,7 @@ import static android.widget.Toast.LENGTH_LONG;
 public class ProfileYouActivity extends AppCompatActivity implements Profile1Fragment.OnFragmentInteractionListener,
         Profile2Fragment.OnFragmentInteractionListener {
 
-
+    private NotificationHandler notificationHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +50,8 @@ public class ProfileYouActivity extends AppCompatActivity implements Profile1Fra
         //*** Creacion del adaptador para el view de los parametros de la persona
         PagerAdapter adapter = new ViewProfilesDatesAdapter(getSupportFragmentManager(), 2);
 
+
+        notificationHandler = new NotificationHandler(ProfileYouActivity.this);
 
         playGame.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +107,7 @@ public class ProfileYouActivity extends AppCompatActivity implements Profile1Fra
                 switch (i){
                     case 1:
                         Toast.makeText(ProfileYouActivity.this, "button " + i + " Clicked, Case 1", LENGTH_LONG).show();
+                        sendNotification("Hello");
                         break;
                     case 2:
                         Intent intent = new Intent(ProfileYouActivity.this,GalleryProfileActivity.class);
@@ -125,6 +134,16 @@ public class ProfileYouActivity extends AppCompatActivity implements Profile1Fra
 
             }
         });
+    }
+
+    private void sendNotification(String message){
+        String title = "Like";
+
+        if(!TextUtils.isEmpty(title) && !TextUtils.isEmpty(message)){
+            boolean highNotification = true;
+            Notification.Builder nb = notificationHandler.createNotification(title,message, highNotification);
+            notificationHandler.getManager().notify(1,nb.build());
+        }
     }
 
     @Override

@@ -47,5 +47,6 @@
     <string name="setting_profile_tittle">Ajustes</string>
     <string name="city_settings_profile">¿Donde vives?</string>
     <string name="cerrar_sesion" translatable="true">Logout</string>
+    <string name="match_Tittle" translatable="true">Hay un Match</string>
 
 </resources>

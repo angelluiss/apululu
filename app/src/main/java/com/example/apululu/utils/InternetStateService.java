@@ -1,5 +1,8 @@
 package com.example.apululu.utils;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -8,8 +11,12 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationCompat;
+import android.text.TextUtils;
 import android.util.Log;
 
+import com.example.apululu.R;
+import com.example.apululu.activity.ChataAndNotificationActivity;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
@@ -23,7 +30,9 @@ import java.util.TimerTask;
 
 public class InternetStateService extends Service {
 
+    private String hello;
     private SharedPreferences prefs;
+
     @Override
     public void onCreate(){
     }
@@ -42,7 +51,6 @@ public class InternetStateService extends Service {
                 String hello;
                 try {
                     hello = data.getString("hello");
-
                 } catch (JSONException e) {
                     return;
                 }
@@ -67,6 +75,7 @@ public class InternetStateService extends Service {
 
         return START_STICKY;
     }
+
     private Socket getSocket()
     {
         Socket socket = null;
@@ -77,6 +86,8 @@ public class InternetStateService extends Service {
         } catch (URISyntaxException e) {}
         return socket;
     }
+
+
 
     @Override
     public void onDestroy(){
