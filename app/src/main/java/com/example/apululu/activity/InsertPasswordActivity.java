@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,7 +14,8 @@ import android.widget.Toast;
 import com.example.apululu.R;
 
 public class InsertPasswordActivity extends AppCompatActivity {
-
+    String[] registro;
+    String passwordString;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,9 +23,13 @@ public class InsertPasswordActivity extends AppCompatActivity {
 
         // Instanciaciòn del los Widgets
         final LinearLayout buttonNext = (LinearLayout) findViewById(R.id.llButtonPasswordNext);
-        final TextView password = (TextView) findViewById(R.id.etPassword);
-        final TextView repeatPassword = (TextView) findViewById(R.id.etRepeatPassword);
+        final EditText password = (EditText) findViewById(R.id.etPassword);
+        final EditText repeatPassword = (EditText) findViewById(R.id.etRepeatPassword);
 
+        // Obtención de los parametros de registro
+        Bundle parametros = this.getIntent().getExtras();
+        assert parametros != null;
+        registro = getIntent().getExtras().getStringArray("registro");
 
         password.addTextChangedListener(new TextWatcher() {
             @Override
@@ -38,7 +44,7 @@ public class InsertPasswordActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                String passwordString = password.getText().toString();
+                passwordString = password.getText().toString();
                 if (passwordString.length() < 8){
                     password.setError("Your Password must have at least 8 chars");
                 }
@@ -64,8 +70,6 @@ public class InsertPasswordActivity extends AppCompatActivity {
             }
         });
 
-
-
         // Comprobación de los formularios
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +80,9 @@ public class InsertPasswordActivity extends AppCompatActivity {
 
                     buttonNext.setBackgroundResource(R.drawable.rounded_button_gradient_solid);
                     Toast.makeText(InsertPasswordActivity.this,"Password valid",Toast.LENGTH_LONG).show();
+                    registro[1] = passwordString;
                     Intent intent = new Intent(InsertPasswordActivity.this,InsertNameActivity.class);
+                    intent.putExtra("registro",registro);
                     startActivity(intent);
                 }else{
                     Toast.makeText(InsertPasswordActivity.this,"Password does not matched",Toast.LENGTH_LONG).show();

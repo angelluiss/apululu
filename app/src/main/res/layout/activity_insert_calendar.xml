@@ -11,9 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
+            android:id="@+id/tvTittleCalendar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="170dp"
+            android:layout_marginTop="100dp"
             android:gravity="center">
             <TextView
                 android:layout_width="match_parent"
@@ -26,9 +27,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="230dp">
+            android:layout_marginTop="40dp"
+            android:layout_below="@+id/tvTittleCalendar">
             <CalendarView
-                android:id="@+id/calendarView"
+                android:id="@+id/calendarView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>

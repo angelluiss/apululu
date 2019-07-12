@@ -11,9 +11,6 @@ import com.example.apululu.R;
 
 public class MatchActivity extends AppCompatActivity {
 
-    TextView matchTittle;
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

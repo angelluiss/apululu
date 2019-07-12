@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.apululu.R;
 
 public class InsertPhoneActivity extends AppCompatActivity {
+    String[] registro;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -24,8 +25,11 @@ public class InsertPhoneActivity extends AppCompatActivity {
         setContentView(R.layout.activity_insert_phone);
 
         final EditText phoneNumber = (EditText) findViewById(R.id.etPhoneNumber);
-
         final LinearLayout buttonNext = (LinearLayout) findViewById(R.id.llButtonPhone);
+
+        Bundle parametros = this.getIntent().getExtras();
+        assert parametros != null;
+        registro = getIntent().getExtras().getStringArray("registro");
 
         phoneNumber.addTextChangedListener(new TextWatcher() {
             @Override
@@ -50,7 +54,9 @@ public class InsertPhoneActivity extends AppCompatActivity {
                 phone = phoneNumber.getText().toString();
                 if (phone.length() >= 9){
                     buttonNext.setBackgroundResource(R.drawable.rounded_button_gradient_solid);
+                    registro[7] = phone;
                     Intent intent = new Intent(InsertPhoneActivity.this, InsertOtherActivity.class);
+                    intent.putExtra("registro",registro);
                     startActivity(intent);
                 }else{
                     Toast.makeText(InsertPhoneActivity.this, "Insert a valid phone number", Toast.LENGTH_LONG).show();

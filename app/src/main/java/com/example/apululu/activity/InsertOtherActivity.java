@@ -12,6 +12,7 @@ import com.example.apululu.R;
 
 
 public class InsertOtherActivity extends AppCompatActivity {
+    String[] registro;
 
     int casesOther = 0;
 
@@ -31,6 +32,9 @@ public class InsertOtherActivity extends AppCompatActivity {
         final CheckBox studentCB = (CheckBox) findViewById(R.id.cbStudent);
         final CheckBox otherCB = (CheckBox) findViewById(R.id.cbOther);
 
+        Bundle parametros = this.getIntent().getExtras();
+        assert parametros != null;
+        registro = getIntent().getExtras().getStringArray("registro");
 
         // Profession Click Listeners.... Eventos de cambios en la UI
         professionCB.setOnClickListener(new View.OnClickListener() {
@@ -142,14 +146,17 @@ public class InsertOtherActivity extends AppCompatActivity {
                 if(professionCB.isChecked()){
                     Intent intent = new Intent(InsertOtherActivity.this,ProfessionAtributteActivity.class);
                     intent.putExtra("Selected",selector);
+                    intent.putExtra("registro",registro);
                     startActivity(intent);
                 }else if(studentCB.isChecked()){
                     Intent intent = new Intent(InsertOtherActivity.this,StudentAtributteActivity.class);
                     intent.putExtra("Selected", selector);
+                    intent.putExtra("registro",registro);
                     startActivity(intent);
                 }else if(otherCB.isChecked()){
                     Intent intent = new Intent(InsertOtherActivity.this,OtherAtributteActivity.class);
                     intent.putExtra("Selected", selector);
+                    intent.putExtra("registro",registro);
                     startActivity(intent);
                 }
             }

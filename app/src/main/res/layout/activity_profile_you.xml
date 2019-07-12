@@ -86,6 +86,7 @@
                     android:id="@+id/button_expandable_110_250"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
                     app:aebAnimDurationMillis="175"
                     app:aebButtonElevation="4dp"
                     app:aebButtonGapDp="20dp"

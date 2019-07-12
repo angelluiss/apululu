@@ -26,6 +26,8 @@ import es.dmoral.toasty.Toasty;
 
 public class InsertEmailActivity extends AppCompatActivity {
     String emailVerification = "";
+    String[] register = {"","","","","","","","","","","","","","",""} ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +44,7 @@ public class InsertEmailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                // POST del Email
+                // Creacion del JSONObject
                 final JSONObject dataJSON = new JSONObject();
                 emailVerification = email.getText().toString();
 
@@ -81,9 +83,11 @@ public class InsertEmailActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Intent intent2 = new Intent(InsertEmailActivity.this,VerificationEmailActivity.class);
-                        intent2.putExtra("email",emailVerification);
-                        startActivity(intent2);
+                        register[0] = emailVerification;
+                        Intent intentEmail = new Intent(InsertEmailActivity.this,VerificationEmailActivity.class);
+                        intentEmail.putExtra("email",emailVerification);
+                        intentEmail.putExtra("registro",register);
+                        startActivity(intentEmail);
                         Toasty.success(InsertEmailActivity.this,"Check your mail to find the Verification code",Toasty.LENGTH_LONG).show();
                     }
                 },

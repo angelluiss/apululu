@@ -22,10 +22,17 @@ import es.dmoral.toasty.Toasty;
 
 public class VerificationEmailActivity extends AppCompatActivity {
     private LinearLayout buttonNext = null;
+    private String[] registro;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verification_email);
+
+
+        Bundle parametros = this.getIntent().getExtras();
+        assert parametros != null;
+        registro = getIntent().getExtras().getStringArray("registro");
+
 
         this.buttonNext = (LinearLayout) findViewById(R.id.llVerificationBtn);
         final EditText inputText = (EditText) findViewById(R.id.etVerification);
@@ -34,6 +41,7 @@ public class VerificationEmailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String tokenCode = inputText.getText().toString().trim();
+                registro[2] = tokenCode;
                 if (!tokenCode.equals(""))
                 {
                     // Declaracion del JSON OBJECT
@@ -72,8 +80,9 @@ public class VerificationEmailActivity extends AppCompatActivity {
                             if (response.getBoolean("valid")) {
                                 Toasty.success(VerificationEmailActivity.this,"Verification success",Toasty.LENGTH_SHORT).show();
                                 buttonNext.setBackgroundResource(R.drawable.rounded_button_gradient_solid);
-                                Intent intent = new Intent(VerificationEmailActivity.this, InsertPasswordActivity.class);
-                                startActivity(intent);
+                                Intent intentEmail = new Intent(VerificationEmailActivity.this, InsertPasswordActivity.class);
+                                intentEmail.putExtra("registro",registro);
+                                startActivity(intentEmail);
 
                             }else{
                                 Toasty.error(VerificationEmailActivity.this,"Invalid Code",Toasty.LENGTH_LONG).show();
