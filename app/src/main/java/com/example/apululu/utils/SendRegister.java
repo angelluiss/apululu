@@ -1,19 +1,16 @@
 package com.example.apululu.utils;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
+
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.apululu.activity.InsertEmailActivity;
-import com.example.apululu.activity.VerificationEmailActivity;
-import com.google.gson.JsonObject;
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,13 +46,13 @@ public class SendRegister {
             profile.put("firstName", firtsName);
             profile.put("lastName", lastName);
             profile.put("birthdate",birthay);
-            profile.put("city", firtsName);
-            profile.put("sex", lastName);
-            profile.put("profession",birthay);
-            profile.put("study", firtsName);
-            profile.put("other", lastName);
-            profile.put("phoneNumber",birthay);
-            profile.put("description",birthay);
+            profile.put("city", city);
+            profile.put("sex", sex);
+            profile.put("profession",profession);
+            profile.put("study", study);
+            profile.put("other", other);
+            profile.put("phoneNumber",phoneNumber);
+            profile.put("description",aboutYou);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -75,31 +72,18 @@ public class SendRegister {
         return registerJSON;
     }
 
-    public void postData(String url,JSONObject dataJSON){
+    public void postData(String url, JSONObject dataJSON, Response.Listener responseListener, Response.ErrorListener errorListener){
 
         RequestQueue requstQueue = Volley.newRequestQueue(context);
 
         JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.POST, url,dataJSON,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        String respuesta = response.toString();
-                        Log.d("registerResponse",respuesta);
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d("registerResponse","Error de registro");
-                    }
-                }
+                responseListener,errorListener
         ){
             //here I want to post data to sever
         };
         jsonobj.setRetryPolicy(new DefaultRetryPolicy(4000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-                Log.d("prueba","Ejecucionsssss");
         requstQueue.add(jsonobj);
     }
 

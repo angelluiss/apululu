@@ -17,6 +17,7 @@ import android.util.Log;
 
 import com.example.apululu.R;
 import com.example.apululu.activity.ChataAndNotificationActivity;
+import com.example.apululu.activity.ProfileYouActivity;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
@@ -32,9 +33,11 @@ public class InternetStateService extends Service {
 
     private String hello;
     private SharedPreferences prefs;
+    private NotificationHandler notificationHandler;
 
     @Override
     public void onCreate(){
+        notificationHandler = new NotificationHandler(this);
     }
 
     @Override
@@ -44,17 +47,23 @@ public class InternetStateService extends Service {
         Socket socket = this.getSocket();
 
         socket.connect();
-        socket.on("hello", new Emitter.Listener() {
+        socket.on("new notification", new Emitter.Listener() {
             @Override
             public void call(final Object... args) {
-                JSONObject data = (JSONObject) args[0];
-                String hello;
+
+                JSONObject hello;
                 try {
-                    hello = data.getString("hello");
+                    JSONObject data =  new JSONObject((String) args[0]);
+                    hello = data.getJSONObject("from");
+                    String dato = hello.toString();
+                    Log.d("SocketMessage",dato);
+                    sendNotification("like");
                 } catch (JSONException e) {
+                    String error = e.toString();
+                    Log.d("SocketMessage",error);
                     return;
                 }
-                Log.d("SocketMessage",hello);
+
             }
         });
 
@@ -85,6 +94,18 @@ public class InternetStateService extends Service {
             socket = IO.socket("http://192.168.2.117:3000", opts);
         } catch (URISyntaxException e) {}
         return socket;
+    }
+
+    private void sendNotification(String message){
+        String title = "Like";
+
+        if(!TextUtils.isEmpty(title) && !TextUtils.isEmpty(message)){
+            boolean highNotification = true;
+
+            Notification.Builder nb = notificationHandler.createNotification(title,message, highNotification);
+
+            notificationHandler.getManager().notify(1,nb.build());
+        }
     }
 
 

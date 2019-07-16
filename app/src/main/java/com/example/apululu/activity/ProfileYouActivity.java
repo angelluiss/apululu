@@ -34,7 +34,6 @@ import static android.widget.Toast.LENGTH_LONG;
 public class ProfileYouActivity extends AppCompatActivity implements Profile1Fragment.OnFragmentInteractionListener,
         Profile2Fragment.OnFragmentInteractionListener {
 
-    private NotificationHandler notificationHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +50,7 @@ public class ProfileYouActivity extends AppCompatActivity implements Profile1Fra
         PagerAdapter adapter = new ViewProfilesDatesAdapter(getSupportFragmentManager(), 2);
 
 
-        notificationHandler = new NotificationHandler(ProfileYouActivity.this);
+
 
         playGame.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,7 +106,7 @@ public class ProfileYouActivity extends AppCompatActivity implements Profile1Fra
                 switch (i){
                     case 1:
                         Toast.makeText(ProfileYouActivity.this, "button " + i + " Clicked, Case 1", LENGTH_LONG).show();
-                        sendNotification("Hello");
+
                         break;
                     case 2:
                         Intent intent = new Intent(ProfileYouActivity.this,GalleryProfileActivity.class);
@@ -136,15 +135,7 @@ public class ProfileYouActivity extends AppCompatActivity implements Profile1Fra
         });
     }
 
-    private void sendNotification(String message){
-        String title = "Like";
 
-        if(!TextUtils.isEmpty(title) && !TextUtils.isEmpty(message)){
-            boolean highNotification = true;
-            Notification.Builder nb = notificationHandler.createNotification(title,message, highNotification);
-            notificationHandler.getManager().notify(1,nb.build());
-        }
-    }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
