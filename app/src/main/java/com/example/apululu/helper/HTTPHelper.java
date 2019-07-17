@@ -1,4 +1,4 @@
-package com.example.apululu.utils;
+package com.example.apululu.helper;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -20,14 +20,12 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GetProfilesToMatch<preferences> {
+public class HTTPHelper<preferences> {
     private Context context;
     private SharedPreferences preferences;
-    public GetProfilesToMatch(Context context){
+    public HTTPHelper(Context context){
         this.context = context;
-
     }
-
 
     public void getData(String url, final String token, String petition, JSONObject dataJSON, Response.Listener responseListener, Response.ErrorListener errorListener){
         RequestQueue requstQueue = Volley.newRequestQueue(context);

@@ -1,4 +1,4 @@
-package com.example.apululu.activity;
+package com.example.apululu.utils;
 
 import android.app.Application;
 import android.os.SystemClock;

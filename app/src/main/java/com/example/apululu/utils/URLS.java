@@ -2,7 +2,8 @@ package com.example.apululu.utils;
 
 public class URLS {
 
-    public final String MAIN_URL = "http://192.168.2.117:3000/api/auth/"; //Enter Your Api Prefix  Url ex
+    public final String MAIN_URL = "http://192.168.2.117:3000/api/"; //Enter Your Api Prefix  Url ex
+    public final String MAIN_URL_IMAGES = "http://192.168.2.117:3000/";
     public final String UPLOAD_URL = "http://ec2-3-15-91-140.us-east-2.compute.amazonaws.com/uploads/";  //Enter  Image Upload Prefix  Url
 
 
@@ -68,8 +69,8 @@ public class URLS {
 
     public final String UPDATE_TOKEN = MAIN_URL + "updatetoken";
 
-    public final String GET_BLOCK_STATUS = MAIN_URL + "getblockstatus";
+    public final String GET_MATCHES = MAIN_URL + "matches";
 
-    public final String PURCHASE = MAIN_URL + "user_purchase";
+    public final String UPLOAD_IMAGE = MAIN_URL_IMAGES + "/uploads/profile/";
 
 }

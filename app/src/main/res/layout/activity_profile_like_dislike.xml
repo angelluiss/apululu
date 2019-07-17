@@ -153,6 +153,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="45dp">
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/civLike"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/heart_1_like" />

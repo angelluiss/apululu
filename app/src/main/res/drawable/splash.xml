@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/color_white"/>
     <item>
-        <bitmap android:src="@drawable/logo_apululu_color"
+        <bitmap android:src="@drawable/color_logo_apululu_small"
             android:gravity="center" />
     </item>
 </layer-list>

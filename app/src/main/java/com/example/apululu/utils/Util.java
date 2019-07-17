@@ -9,10 +9,10 @@ public class Util {
     }
 
     public static String getUserPasswordPrefs(SharedPreferences preferences) {
-        return preferences.getString("email","");
+        return preferences.getString("pass","");
     }
 
-    static String getTokenPrefs(SharedPreferences preferences) {
+    public static String getTokenPrefs(SharedPreferences preferences) {
         return preferences.getString("token","");
     }
 }
