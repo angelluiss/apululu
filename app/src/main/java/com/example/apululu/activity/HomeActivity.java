@@ -1,39 +1,49 @@
 package com.example.apululu.activity;
 
+import android.Manifest;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Handler;
-import android.support.annotation.NonNull;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+
+import android.provider.Settings;
+
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Pair;
+
 import android.view.View;
+
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.apululu.adapter.Cards;
 import com.example.apululu.helper.SQliteHelper;
-import com.example.apululu.utils.cards;
-import com.google.gson.Gson;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.db.rossdeckview.FlingChief;
-import com.db.rossdeckview.FlingChiefListener;
-import com.db.rossdeckview.RossDeckView;
 import com.example.apululu.R;
 import com.example.apululu.adapter.DeckAdapter;
 import com.example.apululu.helper.HTTPHelper;
 import com.example.apululu.utils.URLS;
 import com.example.apululu.utils.Util;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,28 +52,19 @@ import org.json.JSONObject;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.sql.Wrapper;
 import java.util.ArrayList;
-import java.util.List;
+
 
 import es.dmoral.toasty.Toasty;
+import link.fls.swipestack.SwipeStack;
 
 
-public class HomeActivity extends AppCompatActivity implements FlingChiefListener.Actions, FlingChiefListener.Proximity  {
+public class HomeActivity extends AppCompatActivity  {
 
     private final static int DELAY = 1000;
 
-    private List<Pair<String, Integer>> mItems;
 
     private DeckAdapter mAdapter;
-
-    private View mLeftView;
-
-    private View mUpView;
-
-    private View mRightView;
-
-    private View mDownView;
 
     private int[] mColors;
 
@@ -81,20 +82,33 @@ public class HomeActivity extends AppCompatActivity implements FlingChiefListene
     private String birthdate;
     private String userId;
     private String sex;
-    private int distance;
+    private float distance;
+
+    private SwipeStack cardStack;
+    private DeckAdapter cardsAdapter;
+    private ArrayList<Cards> cardItems;
+    private View btnCancel;
+    private View btnLove;
+    private int currentPosition;
 
     public Drawable drawableImagen;
-    public InputStream inputstream;
+    private Target target;
+    private Bitmap mIcon;
 
+    LocationManager locationManager;
+    double longitudeNetwork, latitudeNetwork;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
         matches = new JSONArray();
 
-        URLS urls = new URLS();
+
         getMatches = new HTTPHelper(this);
         preferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
 
@@ -121,24 +135,49 @@ public class HomeActivity extends AppCompatActivity implements FlingChiefListene
             }
         });
 
-        // *** Inicializar
-        mColors  = getResources().getIntArray(R.array.cardsBackgroundColors);
-        mItems = new ArrayList<>();
+        // *** Inicializar Swipes Widgets
+        cardStack = (SwipeStack) findViewById(R.id.container);
+        btnCancel = findViewById(R.id.cancel);
+        btnLove = findViewById(R.id.love);
+
+        setCardStackAdapter(R.drawable.button_rounded_gray, firstName, lastName);
+        currentPosition = 0;
+
+        //Handling swipe event of Cards stack
+        cardStack.setListener(new SwipeStack.SwipeStackListener() {
+            @Override
+            public void onViewSwipedToLeft(int position) {
+                currentPosition = position + 1;
+            }
+
+            @Override
+            public void onViewSwipedToRight(int position) {
+                currentPosition = position + 1;
+            }
+
+            @Override
+            public void onStackEmpty() {
+
+            }
+        });
 
         /// **** Crear Swipe Cards
-        mItems.add(newItem());
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cardStack.swipeTopViewToRight();
+            }
+        });
 
-        mAdapter = new DeckAdapter(this, mItems);
+        btnLove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(HomeActivity.this, "You liked " + cardItems.get(currentPosition).getName(),
+                        Toast.LENGTH_SHORT).show();
+                cardStack.swipeTopViewToLeft();
+            }
+        });
 
-        RossDeckView mDeckLayout = (RossDeckView) findViewById(R.id.decklayout);
-        mDeckLayout.setAdapter(mAdapter);
-        mDeckLayout.setActionsListener(this);
-        mDeckLayout.setProximityListener(this);
-
-        mLeftView = findViewById(R.id.left);
-        mUpView = findViewById(R.id.up);
-        mRightView = findViewById(R.id.right);
-     //   mDownView = findViewById(R.id.down);
 
         //-----START GET DB SQLITE DATES__________---------------------------------------------------------------------------------------------------------
         SQliteHelper dbHelper = new SQliteHelper(this);
@@ -166,16 +205,32 @@ public class HomeActivity extends AppCompatActivity implements FlingChiefListene
         //-------------------------------------------------------------------------------------------END__________---------
 
 
-        DownloadImageFromPath(urls.UPLOAD_IMAGE + image);
 
 
+
+    }
+
+    private void setCardStackAdapter(int imagenID, String name, String lastName) {
+        cardItems = new ArrayList<>();
+
+    //    cardItems.add(new Cards(imagenID, name, lastName));
+        cardItems.add(new Cards(R.drawable.rounded_button_gradient_one, "Do Ha", "Nghe An"));
+        cardItems.add(new Cards(R.drawable.rounded_button_gradient_one, "Dong Nhi", "Hue"));
+        cardItems.add(new Cards(R.drawable.rounded_button_gradient_one, "Le Quyen", "Sai Gon"));
+        cardItems.add(new Cards(R.drawable.rounded_button_gradient_one, "Phuong Linh", "Thanh Hoa"));
+        cardItems.add(new Cards(R.drawable.rounded_button_gradient_one, "Phuong Vy", "Hanoi"));
+        cardItems.add(new Cards(R.drawable.rounded_button_gradient_one, "Ha Ho", "Da Nang"));
+        Log.d("cards", cardItems.toString());
+
+        cardsAdapter = new DeckAdapter(this, cardItems);
+        cardStack.setAdapter(cardsAdapter);
     }
 
     // **** GET HTTP Request para perfiles
 
     private void getProfilesMatch(){
 
-        URLS urls = new URLS();
+        final URLS urls = new URLS();
 
         getMatches.getDataArray(urls.GET_MATCHES,Util.getTokenPrefs(preferences),"GET", new JSONArray(),new Response.Listener<JSONArray>() {
             @Override
@@ -192,77 +247,92 @@ public class HomeActivity extends AppCompatActivity implements FlingChiefListene
                 Log.d("matchResponse",error.toString());
             }
         });
-    }
-    // ------ GET HTTP Request para perfiles ------------------------------------------------------------------
+    }// ------ GET HTTP Request para perfiles ------------------------------------------------------------------
 
 
-    //// ********   Eventos de Swipe Cards    -------------------------------------------------------------
 
-    @Override
-    public boolean onDismiss(@NonNull FlingChief.Direction direction, @NonNull View view) {
-        Toast.makeText(this, "Dismiss to " + direction, Toast.LENGTH_SHORT).show();
-        return true;
-    }
+    //// ********   Eventos de Geolocalización    -------------------------------------------------------------
 
-    @Override
-    public boolean onDismissed(@NonNull View view) {
-        mItems.remove(0);
-        mAdapter.notifyDataSetChanged();
-        newItemWithDelay(DELAY);
-        return true;
+    private boolean checkLocation() {
+        if (!isLocationEnabled())
+            showAlert();
+        return isLocationEnabled();
     }
 
-    @Override
-    public boolean onReturn(@NonNull View view) {
-        return true;
+    private void showAlert() {
+        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Enable Location")
+                .setMessage("Su ubicación esta desactivada.\npor favor active su ubicación " +
+                        "usa esta app")
+                .setPositiveButton("Configuración de ubicación", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                        Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivity(myIntent);
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                    }
+                });
+        dialog.show();
     }
 
-    @Override
-    public boolean onReturned(@NonNull View view) {
-        return true;
-    }
-
-    @Override
-    public boolean onTapped() {
-        Toast.makeText(this, "Tapped", Toast.LENGTH_SHORT).show();
-        return true;
-    }
-
-    @Override
-    public boolean onDoubleTapped() {
-        Toast.makeText(this, "Double tapped", Toast.LENGTH_SHORT).show();
-        return true;
-    }
-
-    @Override
-    public void onProximityUpdate(@NonNull float[] proximities, @NonNull View view) {
-        mLeftView.setScaleY((1 - proximities[0] >= 0) ? 1 - proximities[0] : 0);
-        mUpView.setScaleX((1 - proximities[1] >= 0) ? 1 - proximities[1] : 0);
-        mRightView.setScaleY((1 - proximities[2] >= 0) ? 1 - proximities[2] : 0);
-    //    mDownView.setScaleX((1 - proximities[3] >= 0) ? 1 - proximities[3] : 0);
-    }
-
-    private Pair<String, Integer> newItem(){
-
-        Pair<String, Integer> res = new Pair<>(firstName+ " " + lastName, mColors[mCount]);
-        mCount = (mCount >= mColors.length - 1) ? 0 : mCount + 1;
-        return res;
+    private boolean isLocationEnabled() {
+        return locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
 
 
-    private void newItemWithDelay(int delay){
-
-        final Pair<String, Integer> res = newItem();
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mItems.add(res);
-                mAdapter.notifyDataSetChanged();
+    public void toggleNetworkUpdates() {
+        if (!checkLocation())
+            return;
+       // Button button = (Button) view; button.getText().equals(getResources().getString(R.string.pause));
+        if (!checkLocation()) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             }
-        }, delay);
+            locationManager.removeUpdates(locationListenerNetwork);
+         //   button.setText(R.string.resume);
+        }
+        else {
+            locationManager.requestLocationUpdates(
+                    LocationManager.NETWORK_PROVIDER, 20 * 1000, 10, locationListenerNetwork);
+            Toast.makeText(this, "Network provider started running", Toast.LENGTH_LONG).show();
+           // button.setText(R.string.pause);
+        }
     }
-    //// ------------   Eventos de Swipe Cards    ---------------------------------------------------------------------------------
+
+    private final LocationListener locationListenerNetwork = new LocationListener() {
+        public void onLocationChanged(Location location) {
+            longitudeNetwork = location.getLongitude();
+            latitudeNetwork = location.getLatitude();
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Log.d("longitud", String.valueOf(longitudeNetwork));
+                    Log.d("latitud", String.valueOf(latitudeNetwork));
+            //        longitudeValueNetwork.setText(longitudeNetwork + "");
+            //        latitudeValueNetwork.setText(latitudeNetwork + "");
+                    Toast.makeText(HomeActivity.this, "Network Provider update", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        @Override
+        public void onStatusChanged(String s, int i, Bundle bundle) {
+        }
+
+        @Override
+        public void onProviderEnabled(String s) {
+
+        }
+        @Override
+        public void onProviderDisabled(String s) {
+
+        }
+    };//// ------------   Eventos de Geolocalización    ---------------------------------------------------------------------------------
+
 
 
     /// ****** Parse http Request-------------------------------------
@@ -270,6 +340,7 @@ public class HomeActivity extends AppCompatActivity implements FlingChiefListene
     private void parseJSONArray(JSONArray array){
 
         try {
+            URLS urls = new URLS();
 
             for (int count = 0; count < array.length(); count++){
                 JSONObject object =  array.getJSONObject(count);
@@ -279,14 +350,15 @@ public class HomeActivity extends AppCompatActivity implements FlingChiefListene
                 sex =  object.get("sex").toString();
                 image = object.get("image").toString();
                 birthdate = object.get("birthdate").toString();
-                distance = Integer.parseInt(object.get("distance").toString());
+                distance = Float.parseFloat(object.get("distance").toString());
 
-                putDBDates(sex, firstName, lastName, image, distance,birthdate);
+       //         putDBDates(sex, firstName, lastName, image, distance,birthdate);
 
                 int tamaño = object.length();
 
                 // Swipe Card Inicialization del Array list
                 // Swipe Card Home Variables
+            //    DownloadImageFromPath(urls.MAIN_URL_IMAGES + image);
 
 
                 Log.d("arraydatos1",Integer.toString(tamaño));
@@ -297,7 +369,7 @@ public class HomeActivity extends AppCompatActivity implements FlingChiefListene
         }
     }
 
-    public void putDBDates(String sex, String firstname, String lastname, String image, int distance,String birthadate){
+    public void putDBDates(String sex, String firstname, String lastname, String image, float distance,String birthadate){
 
         SQliteHelper dbHelper = new SQliteHelper(this);
 
@@ -318,29 +390,39 @@ public class HomeActivity extends AppCompatActivity implements FlingChiefListene
         }
     }
 
-    public void DownloadImageFromPath(String path){
-        InputStream in =null;
-        Bitmap bmp=null;
-      //  ImageView iv = (ImageView)findViewById(R.id.img1);
-        int responseCode = -1;
-        try{
-            URL url = new URL(path);//"http://192.xx.xx.xx/mypath/img1.jpg
-            HttpURLConnection con = (HttpURLConnection)url.openConnection();
-            con.setDoInput(true);
-            con.connect();
-            responseCode = con.getResponseCode();
-            if(responseCode == HttpURLConnection.HTTP_OK)
-            {
-                //download
+  /*  public Bitmap DownloadImageFromPath(String path){
 
-                in = con.getInputStream();
-                bmp = BitmapFactory.decodeStream(in);
-                drawableImagen = new BitmapDrawable(getResources(),bmp);
-                in.close();
+        target = new Target() {
+            @Override
+            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                Log.d("Bitmap_Ejecuto", "on bitmap loaded");
+                Bitmap mIcon = bitmap;
             }
-        }
-        catch(Exception ex){
-            Log.e("Exception",ex.toString());
-        }
+
+            @Override
+            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+                Log.d("Error_bitmap", String.valueOf(errorDrawable));
+            }
+
+
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+                Log.d("PlaceholderBitmap", String.valueOf(placeHolderDrawable));
+                Drawable mIcon = placeHolderDrawable;
+            }
+        };
+
+        Picasso.get()
+                .load(path)
+                .into(target);
+        Log.d("target", String.valueOf(target));
+
+        return mIcon;
     }
+
+    @Override
+    public void onDestroy() {  // could be in onPause or onStop
+        Picasso.get().cancelRequest(target);
+        super.onDestroy();
+    } */
 }
