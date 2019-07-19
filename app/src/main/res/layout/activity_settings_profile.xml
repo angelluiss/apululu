@@ -172,60 +172,81 @@
                 android:layout_marginBottom="20dp"
                 android:textStyle="bold"
                 android:textColor="@color/color_gray"/>
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/llWorkAjustes"
                 android:layout_width="250dp"
                 android:layout_height="40dp"
                 android:layout_below="@+id/tvWorkTittleAjustes"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/button_rounded_dark_gray"
-                android:layout_gravity="center"
-                android:gravity="center"
                 android:layout_margin="5dp">
+                <CheckBox
+                    android:id="@+id/cbWorkAjustes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"/>
                 <TextView
                     android:id="@+id/tvWorkAjustes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/work_preference_button"
                     android:textSize="20sp"
-                    android:textColor="@color/color_white"/>
-            </LinearLayout>
-            <LinearLayout
+                    android:textColor="@color/color_white"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+            <RelativeLayout
                 android:id="@+id/llStudyAjustes"
                 android:layout_width="250dp"
                 android:layout_height="40dp"
                 android:layout_below="@+id/llWorkAjustes"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/button_rounded_dark_gray"
-                android:layout_gravity="center"
-                android:gravity="center"
                 android:layout_margin="5dp">
+                <CheckBox
+                    android:id="@+id/cbStudentAjustes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"/>
                 <TextView
                     android:id="@+id/tvStudyAjustes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/study_preference_button"
                     android:textSize="20sp"
-                    android:textColor="@color/color_white"/>
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/llOtherPreference"
+                    android:textColor="@color/color_white"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/llOtherAjustes"
                 android:layout_width="250dp"
                 android:layout_height="40dp"
                 android:layout_below="@+id/llStudyAjustes"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/button_rounded_dark_gray"
-                android:layout_gravity="center"
-                android:gravity="center"
                 android:layout_margin="5dp">
+                <CheckBox
+                    android:id="@+id/cbOtherAjustes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"/>
                 <TextView
                     android:id="@+id/tvOtherAjustes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/other_preference_button"
                     android:textSize="20sp"
-                    android:textColor="@color/color_white"/>
-            </LinearLayout>
+                    android:textColor="@color/color_white"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
             <TextView
                 android:id="@+id/tiPhoneAjustes"
                 android:layout_width="250sp"
@@ -238,7 +259,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="20dp"
                 android:textStyle="bold"
-                android:layout_below="@+id/llOtherPreference"/>
+                android:layout_below="@+id/llOtherAjustes"/>
             <LinearLayout
                 android:id="@+id/llPhoneNumberAjustes"
                 android:layout_width="wrap_content"
@@ -253,6 +274,20 @@
                     android:layout_margin="10dp"
                     android:textSize="20sp"/>
             </LinearLayout>
+
+
+            <com.github.tonywills.loadingbutton.LoadingButton
+                android:id="@+id/loading_button_ajustes"
+                android:layout_width="250dp"
+                android:layout_height="80dp"
+                app:buttonBackgroundTint="@color/gradient_start"
+                app:loadingColor="@color/gradient_end"
+                app:buttonText="@string/save_button"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/llPhoneNumberAjustes"
+                android:layout_marginBottom="30dp"
+                style="@style/Widget.AppCompat.Button.Colored" />
+
             <LinearLayout
                 android:id="@+id/llLogout"
                 android:layout_width="match_parent"
@@ -264,7 +299,7 @@
                 android:layout_marginBottom="4dp"
                 android:background="@drawable/button_rounded_white"
                 android:gravity="center"
-                android:layout_below="@+id/llPhoneNumberAjustes">
+                android:layout_below="@+id/loading_button_ajustes">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -296,6 +331,8 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="7dp" />
                 </LinearLayout>
+
+
 
             </RelativeLayout>
         </RelativeLayout>

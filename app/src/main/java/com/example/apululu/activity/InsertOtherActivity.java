@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.example.apululu.R;
 
@@ -23,8 +24,8 @@ public class InsertOtherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert_other);
 
-        final LinearLayout professionLayout = (LinearLayout) findViewById(R.id.llBtnProfession);
-        final LinearLayout studentLayout = (LinearLayout) findViewById(R.id.llBtnStudent);
+        final RelativeLayout professionLayout = (RelativeLayout) findViewById(R.id.llBtnProfession);
+        final RelativeLayout studentLayout = (RelativeLayout) findViewById(R.id.llBtnStudent);
         final LinearLayout otherLayout = (LinearLayout) findViewById(R.id.llBtnOther);
         final LinearLayout buttonNext = (LinearLayout) findViewById(R.id.llButtonOtherNext);
 

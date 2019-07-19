@@ -10,29 +10,31 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 
+import android.os.Handler;
 import android.provider.Settings;
 
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import android.util.Pair;
 import android.view.View;
 
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.apululu.adapter.Cards;
+import com.db.rossdeckview.FlingChief;
+import com.db.rossdeckview.FlingChiefListener;
+import com.db.rossdeckview.RossDeckView;
+import com.example.apululu.utils.Cards;
 import com.example.apululu.helper.SQliteHelper;
 
 import com.android.volley.Response;
@@ -42,33 +44,41 @@ import com.example.apululu.adapter.DeckAdapter;
 import com.example.apululu.helper.HTTPHelper;
 import com.example.apululu.utils.URLS;
 import com.example.apululu.utils.Util;
-import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 
 import es.dmoral.toasty.Toasty;
 import link.fls.swipestack.SwipeStack;
 
 
-public class HomeActivity extends AppCompatActivity  {
+public class HomeActivity extends AppCompatActivity implements FlingChiefListener.Actions, FlingChiefListener.Proximity {
 
+    ////
     private final static int DELAY = 1000;
 
+    private List<Cards> mItems;
 
     private DeckAdapter mAdapter;
+
+    private View mLeftView;
+
+    private View mUpView;
+
+    private View mRightView;
+
+    private View mDownView;
 
     private int[] mColors;
 
     private int mCount = 0;
+    ////
 
     private HTTPHelper getMatches;
 
@@ -103,15 +113,19 @@ public class HomeActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
+        //// ***** ------- Location Manager instancer
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
+        //// ***** ------- Array para los matches instancer
         matches = new JSONArray();
 
-
+        //// ***** ------- Matches peticion instancer
         getMatches = new HTTPHelper(this);
+
+        //// ***** ------- Obtener Preferencias instancer
         preferences = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
 
+        ////// **** -----  Obtener profiles con funcion get
         getProfilesMatch();
 
         LinearLayout buttonProfile1 = (LinearLayout) findViewById(R.id.llProfileButton);
@@ -136,107 +150,34 @@ public class HomeActivity extends AppCompatActivity  {
         });
 
         // *** Inicializar Swipes Widgets
-        cardStack = (SwipeStack) findViewById(R.id.container);
-        btnCancel = findViewById(R.id.cancel);
-        btnLove = findViewById(R.id.love);
+        mColors  = getResources().getIntArray(R.array.cardsBackgroundColors);
+        mItems = new ArrayList<>();
 
-        setCardStackAdapter(R.drawable.button_rounded_gray, firstName, lastName);
-        currentPosition = 0;
+        mAdapter = new DeckAdapter(this, mItems);
 
-        //Handling swipe event of Cards stack
-        cardStack.setListener(new SwipeStack.SwipeStackListener() {
-            @Override
-            public void onViewSwipedToLeft(int position) {
-                currentPosition = position + 1;
-            }
+        RossDeckView mDeckLayout = (RossDeckView) findViewById(R.id.decklayout);
+        mDeckLayout.setAdapter(mAdapter);
+        mDeckLayout.setActionsListener(this);
+        mDeckLayout.setProximityListener(this);
 
-            @Override
-            public void onViewSwipedToRight(int position) {
-                currentPosition = position + 1;
-            }
+        mLeftView = findViewById(R.id.left);
+        mUpView = findViewById(R.id.up);
+        mRightView = findViewById(R.id.right);
+        mDownView = findViewById(R.id.down);
 
-            @Override
-            public void onStackEmpty() {
-
-            }
-        });
-
-        /// **** Crear Swipe Cards
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cardStack.swipeTopViewToRight();
-            }
-        });
-
-        btnLove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(HomeActivity.this, "You liked " + cardItems.get(currentPosition).getName(),
-                        Toast.LENGTH_SHORT).show();
-                cardStack.swipeTopViewToLeft();
-            }
-        });
-
-
-        //-----START GET DB SQLITE DATES__________---------------------------------------------------------------------------------------------------------
-        SQliteHelper dbHelper = new SQliteHelper(this);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-        Cursor c = db.rawQuery("SELECT _id, sex,firtsName, lastName, image, distance, birthdate FROM people_matches", null);
-
-        if (c != null) {
-            c.moveToFirst();
-            do {
-                //Asignamos el valor en nuestras variables para usarlos en lo que necesitemos
-                String sex = c.getString(c.getColumnIndex("sex"));
-                String firtsName = c.getString(c.getColumnIndex("firtsName"));
-                String lastName = c.getString(c.getColumnIndex("lastName"));
-                String image = c.getString(c.getColumnIndex("image"));
-                String distance = c.getString(c.getColumnIndex("distance"));
-                String birthdate = c.getString(c.getColumnIndex("birthdate"));
-
-            } while (c.moveToNext());
-        }
-
-        //Cerramos el cursor y la conexion con la base de datos
-        c.close();
-        db.close();
-        //-------------------------------------------------------------------------------------------END__________---------
-
-
-
-
+        //// _________________________---------
 
     }
 
-    private void setCardStackAdapter(int imagenID, String name, String lastName) {
-        cardItems = new ArrayList<>();
-
-    //    cardItems.add(new Cards(imagenID, name, lastName));
-        cardItems.add(new Cards(R.drawable.rounded_button_gradient_one, "Do Ha", "Nghe An"));
-        cardItems.add(new Cards(R.drawable.rounded_button_gradient_one, "Dong Nhi", "Hue"));
-        cardItems.add(new Cards(R.drawable.rounded_button_gradient_one, "Le Quyen", "Sai Gon"));
-        cardItems.add(new Cards(R.drawable.rounded_button_gradient_one, "Phuong Linh", "Thanh Hoa"));
-        cardItems.add(new Cards(R.drawable.rounded_button_gradient_one, "Phuong Vy", "Hanoi"));
-        cardItems.add(new Cards(R.drawable.rounded_button_gradient_one, "Ha Ho", "Da Nang"));
-        Log.d("cards", cardItems.toString());
-
-        cardsAdapter = new DeckAdapter(this, cardItems);
-        cardStack.setAdapter(cardsAdapter);
-    }
 
     // **** GET HTTP Request para perfiles
 
     private void getProfilesMatch(){
 
-        final URLS urls = new URLS();
-
-        getMatches.getDataArray(urls.GET_MATCHES,Util.getTokenPrefs(preferences),"GET", new JSONArray(),new Response.Listener<JSONArray>() {
+        getMatches.getDataArray(URLS.GET_MATCHES,Util.getTokenPrefs(preferences),"GET", new JSONArray(),new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 Log.d("match respuesta",response.toString());
-
                 matches = response;
                 parseJSONArray(matches);
             }
@@ -248,8 +189,6 @@ public class HomeActivity extends AppCompatActivity  {
             }
         });
     }// ------ GET HTTP Request para perfiles ------------------------------------------------------------------
-
-
 
     //// ********   Eventos de Geolocalización    -------------------------------------------------------------
 
@@ -334,7 +273,6 @@ public class HomeActivity extends AppCompatActivity  {
     };//// ------------   Eventos de Geolocalización    ---------------------------------------------------------------------------------
 
 
-
     /// ****** Parse http Request-------------------------------------
 
     private void parseJSONArray(JSONArray array){
@@ -355,20 +293,52 @@ public class HomeActivity extends AppCompatActivity  {
        //         putDBDates(sex, firstName, lastName, image, distance,birthdate);
 
                 int tamaño = object.length();
-
+                int userID = Integer.parseInt(userId);
                 // Swipe Card Inicialization del Array list
                 // Swipe Card Home Variables
             //    DownloadImageFromPath(urls.MAIN_URL_IMAGES + image);
 
+                String firtsAndlastName = firstName + " " + lastName;
+                newItemWithDelay(0, firtsAndlastName, String.valueOf(distance), userID);
 
-                Log.d("arraydatos1",Integer.toString(tamaño));
+
 
             }
         }catch (JSONException exception){
             Log.d("arrayerror", exception.toString());
         }
-    }
+    } /// ****** Parse http Request END-------------------------------------
 
+
+
+//-----START GET DB SQLITE DATES__________---------------------------------------------------------------------------------------------------------
+
+    public void getDBData() {
+        SQliteHelper dbHelper = new SQliteHelper(this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        Cursor c = db.rawQuery("SELECT _id, sex,firtsName, lastName, image, distance, birthdate FROM people_matches", null);
+
+        if (c != null) {
+            c.moveToFirst();
+            do {
+                //Asignamos el valor en nuestras variables para usarlos en lo que necesitemos
+                String sex = c.getString(c.getColumnIndex("sex"));
+                String firtsName = c.getString(c.getColumnIndex("firtsName"));
+                String lastName = c.getString(c.getColumnIndex("lastName"));
+                String image = c.getString(c.getColumnIndex("image"));
+                String distance = c.getString(c.getColumnIndex("distance"));
+                String birthdate = c.getString(c.getColumnIndex("birthdate"));
+
+            } while (c.moveToNext());
+        }
+        //Cerramos el cursor y la conexion con la base de datos
+        c.close();
+        db.close();
+    }//-------------------------------------------------------------------------------------------END__________---------
+
+
+    ////  *****  DB Put files
     public void putDBDates(String sex, String firstname, String lastname, String image, float distance,String birthadate){
 
         SQliteHelper dbHelper = new SQliteHelper(this);
@@ -389,6 +359,137 @@ public class HomeActivity extends AppCompatActivity  {
             db.insert("people_matches", null, cv);
         }
     }
+
+    /////__________________________------------
+
+    @Override
+    public boolean onDismiss(@NonNull FlingChief.Direction direction, @NonNull View view) {
+        Cards actualCard = mItems.get(0);
+        switch (direction) {
+            case RIGHT:
+
+                    HTTPHelper helper = new HTTPHelper(HomeActivity.this);
+                    int userId = actualCard.getUserID();
+                    final JSONObject dataJSON = new JSONObject();
+                    try {
+                        dataJSON.put("user", userId);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    helper.petitionData(URLS.USER_LIKE, Util.getTokenPrefs(preferences), "POST", dataJSON,new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    Toast.makeText(HomeActivity.this, response.toString() + " Liked", Toast.LENGTH_SHORT).show();
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Toast.makeText(HomeActivity.this, error.toString() + " Liked", Toast.LENGTH_SHORT).show();
+
+                                }
+                            });
+                break;
+            case LEFT:
+                HTTPHelper helperDislike = new HTTPHelper(HomeActivity.this);
+
+
+                int userIdDislike = actualCard.getUserID();
+                final JSONObject dataJSONDislike = new JSONObject();
+                try {
+                    dataJSONDislike.put("user", userIdDislike);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                helperDislike.petitionData(URLS.USER_DISLIKE, Util.getTokenPrefs(preferences), "POST", dataJSONDislike,new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Toast.makeText(HomeActivity.this, response.toString() + " Dislike", Toast.LENGTH_SHORT).show();
+
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(HomeActivity.this, error.toString() + " Disliked", Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+                break;
+            case TOP:
+
+                break;
+        }
+        Toast.makeText(this, "Dismiss to " + direction, Toast.LENGTH_SHORT).show();
+        return true;
+    }
+
+    @Override
+    public boolean onDismissed(@NonNull View view) {
+
+        mItems.remove(0);
+        mAdapter.notifyDataSetChanged();
+        //newItemWithDelay(DELAY);
+        return true;
+    }
+
+    @Override
+    public boolean onReturn(@NonNull View view) {
+        return true;
+    }
+
+    @Override
+    public boolean onReturned(@NonNull View view) {
+        return true;
+    }
+
+    @Override
+    public boolean onTapped() {
+        Toast.makeText(this, "Tapped", Toast.LENGTH_SHORT).show();
+
+        return true;
+    }
+
+    @Override
+    public boolean onDoubleTapped() {
+        Toast.makeText(this, "Double tapped", Toast.LENGTH_SHORT).show();
+        return true;
+    }
+
+    @Override
+    public void onProximityUpdate(@NonNull float[] proximities, @NonNull View view) {
+
+        mLeftView.setScaleY((1 - proximities[0] >= 0) ? 1 - proximities[0] : 0);
+        mUpView.setScaleX((1 - proximities[1] >= 0) ? 1 - proximities[1] : 0);
+        mRightView.setScaleY((1 - proximities[2] >= 0) ? 1 - proximities[2] : 0);
+        mDownView.setScaleX((1 - proximities[3] >= 0) ? 1 - proximities[3] : 0);
+    }
+
+
+    private Cards newItem(String name, String location, Integer userID){
+
+        Cards res = new Cards(R.drawable.button_rounded_gray, name, location, userID);
+        return res;
+    }
+
+
+    private void newItemWithDelay(int delay, String name,String location,int userID){
+
+        final Cards res = newItem(name, location,userID);
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mItems.add(res);
+                mAdapter.notifyDataSetChanged();
+            }
+        }, delay);
+    }
+
+
+
+
+    ///////////////////_______________-------------
 
   /*  public Bitmap DownloadImageFromPath(String path){
 

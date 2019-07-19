@@ -5,4 +5,5 @@
         <bitmap android:src="@drawable/color_logo_apululu_small"
             android:gravity="center" />
     </item>
+
 </layer-list>

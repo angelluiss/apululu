@@ -17,51 +17,59 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/llmenuBar2">
-                <RelativeLayout
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <View
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/left"
+                    android:textSize="30sp"
+                    android:layout_margin="5dp"
+                    android:layout_centerVertical="true"
+                    android:scaleY="0"
+                    android:background="@android:color/black"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:id="@+id/up"
+                    android:textSize="30sp"
+                    android:layout_margin="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:scaleX="0"
+                    android:background="@android:color/black"/>
+                <View
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/right"
+                    android:textSize="30sp"
+                    android:layout_margin="5dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:scaleY="0"
+                    android:background="@android:color/black"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:id="@+id/down"
+                    android:textSize="30sp"
+                    android:layout_margin="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:scaleX="0"
+                    android:background="@android:color/black"/>
+
+                <com.db.rossdeckview.RossDeckView
+                    xmlns:derdidaz="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/decklayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:weightSum="1">
+                    derdidaz:stack_padding="6dp"
+                    derdidaz:stack_scale=".1"/>
 
-                        <link.fls.swipestack.SwipeStack
-                            android:id="@+id/container"
-                            android:layout_width="match_parent"
-                            android:layout_height="500dp"
-                            app:stack_rotation="0" />
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true">
-
-                                <TextView
-                                    android:id="@+id/empty"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true" />
-
-                                <ImageView
-                                    android:id="@+id/love"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_toRightOf="@id/empty"
-                                    android:contentDescription="@null"
-                                    android:src="@drawable/heart_1_like" />
-
-                                <ImageView
-                                    android:id="@+id/cancel"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:layout_marginRight="10dp"
-                                    android:layout_toLeftOf="@id/empty"
-                                    android:contentDescription="@null"
-                                    android:src="@drawable/heart_1_like" />
-                        </RelativeLayout>
-
-
-                </RelativeLayout>
+            </RelativeLayout>
         </LinearLayout>
 
 

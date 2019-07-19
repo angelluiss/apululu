@@ -33,7 +33,7 @@
     <string name="other_atributte">¿Cúal es tu otra actividad?</string>
     <string name="student_button">Esctibe aquí..</string>
     <string name="register_success">Te has registado con éxito</string>
-    <string name="gender_prefence" >Gender</string>
+    <string name="gender_prefence" >Género</string>
     <string name="Age_prefence" >Edad</string>
     <string name="distance_prefence">Distancia</string>
     <string name="work_preference">¿Que prefieres que él/ella haga?</string>
@@ -48,5 +48,6 @@
     <string name="city_settings_profile">¿Donde vives?</string>
     <string name="cerrar_sesion" translatable="true">Logout</string>
     <string name="match_Tittle" translatable="true">Hay un Match</string>
+    <string name="save_button" translatable="true">SAVE</string>
 
 </resources>

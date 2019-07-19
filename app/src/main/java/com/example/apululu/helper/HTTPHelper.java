@@ -27,7 +27,7 @@ public class HTTPHelper<preferences> {
         this.context = context;
     }
 
-    public void getData(String url, final String token, String petition, JSONObject dataJSON, Response.Listener responseListener, Response.ErrorListener errorListener){
+    public void petitionData(String url, final String token, String petition, JSONObject dataJSON, Response.Listener responseListener, Response.ErrorListener errorListener){
         RequestQueue requstQueue = Volley.newRequestQueue(context);
         int method = -99;
 
