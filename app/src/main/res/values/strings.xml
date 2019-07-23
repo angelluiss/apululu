@@ -50,6 +50,7 @@
     <string name="cerrar_sesion" translatable="true">Logout</string>
     <string name="match_Tittle" translatable="true">It\'s a Match</string>
     <string name="save_button" translatable="true">SAVE</string>
+    <string name="notification_like_message" translatable="true">Likes you!</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

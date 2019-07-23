@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,20 +10,23 @@
         android:id="@+id/ivNotification1"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@drawable/button_rounded_blue"
+        android:background="@drawable/heart_1_"
         android:layout_margin="20dp"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp">
+        android:layout_marginBottom="5dp"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/ivNotification1">
         <TextView
             android:id="@+id/tvNotificationTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title Notification"
-            android:textSize="16sp"
+            android:text=""
+            android:hint="Tittle Notification"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
@@ -33,12 +36,13 @@
             android:id="@+id/tvNotificationContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Notification Content"
-            android:textSize="14sp"
+            android:text=""
+            android:hint="Notification Content"
+            android:textSize="18sp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="1dp"/>
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

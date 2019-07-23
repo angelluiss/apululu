@@ -1,27 +1,14 @@
 package com.example.apululu.activity;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
+
 import android.content.Intent;
-import android.net.Uri;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import com.example.apululu.R;
-import com.example.apululu.adapter.ViewProfilesDatesAdapter;
-import com.example.apululu.fragment.Profile1Fragment;
-import com.example.apululu.fragment.Profile2Fragment;
-import com.example.apululu.utils.NotificationHandler;
 import com.fangxu.allangleexpandablebutton.AllAngleExpandableButton;
 import com.fangxu.allangleexpandablebutton.ButtonData;
 import com.fangxu.allangleexpandablebutton.ButtonEventListener;
@@ -31,8 +18,7 @@ import java.util.List;
 
 import static android.widget.Toast.LENGTH_LONG;
 
-public class ProfileYouActivity extends AppCompatActivity implements Profile1Fragment.OnFragmentInteractionListener,
-        Profile2Fragment.OnFragmentInteractionListener {
+public class ProfileYouActivity extends AppCompatActivity {
 
 
     @Override
@@ -40,16 +26,10 @@ public class ProfileYouActivity extends AppCompatActivity implements Profile1Fra
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_you);
 
-        final ViewPager views = (ViewPager)findViewById(R.id.vpDatosProfile1);
 
         // *** Instancia del los Widgets del menú
         LinearLayout buttonFeed = (LinearLayout) findViewById(R.id.llFeedButton);
         SwitchCompat playGame = (SwitchCompat) findViewById(R.id.scPlayGame);
-
-        //*** Creacion del adaptador para el view de los parametros de la persona
-        PagerAdapter adapter = new ViewProfilesDatesAdapter(getSupportFragmentManager(), 2);
-
-
 
 
         playGame.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +48,8 @@ public class ProfileYouActivity extends AppCompatActivity implements Profile1Fra
             }
         });
 
-        views.setAdapter(adapter);
+
+
 
         // **** Botón Menu Redondo
         installButton110to250();
@@ -133,12 +114,5 @@ public class ProfileYouActivity extends AppCompatActivity implements Profile1Fra
 
             }
         });
-    }
-
-
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
     }
 }

@@ -3,6 +3,8 @@ package com.example.apululu.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +23,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.apululu.R;
+import com.example.apululu.helper.HTTPHelper;
+import com.example.apululu.helper.SQliteHelper;
+import com.example.apululu.utils.URLS;
 import com.example.apululu.utils.Util;
 
 import org.json.JSONException;
@@ -129,6 +134,38 @@ public class LoginActivity extends AppCompatActivity {
                             SharedPreferences.Editor editor = preferences.edit();
                             saveOnPreferences(userEmail.getText().toString(),userPassword.getText().toString(),tokenLogin);
                             Log.d("preferencias", preferences.toString());
+
+                            /// ********************* BASE DE DATOS / DATA BASE ************************
+                            SQliteHelper dbHelper = new SQliteHelper(LoginActivity.this);
+                            SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+                            ///// Query to db
+                            Cursor c = db.rawQuery("SELECT _id, userId FROM comments", null);
+                            if (c != null) {
+                                c.moveToFirst();
+                                do {
+                                    //Asignamos el valor en nuestras variables para usarlos en lo que necesitemos
+                                    String user = c.getString(c.getColumnIndex("userId"));
+                                    if(!user.isEmpty()){
+                                        HTTPHelper profilePetitions = new HTTPHelper(LoginActivity.this);
+                                        profilePetitions.petitionData(URLS.GET_USER_DETAIL,tokenLogin, "GET", null,new Response.Listener<JSONObject>() {
+                                                    @Override
+                                                    public void onResponse(JSONObject response) {
+
+                                                    }
+                                                },
+                                                new Response.ErrorListener() {
+                                                    @Override
+                                                    public void onErrorResponse(VolleyError error) {
+
+                                                    }
+                                                } );
+                                    }
+                                } while (c.moveToNext());
+                            }
+
+
+
                             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
@@ -152,5 +189,7 @@ public class LoginActivity extends AppCompatActivity {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requstQueue.add(jsonobj);
     }
+
+
 
 }

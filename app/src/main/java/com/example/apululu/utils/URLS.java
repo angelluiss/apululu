@@ -31,7 +31,7 @@ public class URLS {
 
     public final static String GET_ALL_STATIC = MAIN_URL + "get_all_static";
 
-    public final static String GET_USER_DETAIL = MAIN_URL + "getuserdetails";
+    public final static String GET_USER_DETAIL = MAIN_URL + "me/profile";
 
     public final static String USER_PREFERENCE_UPDATE = MAIN_URL + "userPrefencesUpdate";
 
@@ -59,7 +59,7 @@ public class URLS {
 
     public final static String USER_UNFRIEND = MAIN_URL + "userUnfriend";
 
-    public final static String REPORT_USER = MAIN_URL + "reporteuser";
+    public final static String NOTIFICATION_USER = MAIN_URL + "notifications";
 
     public final static String MUTUAL_FRIEND = MAIN_URL + "mutualFriends";
 
@@ -74,5 +74,7 @@ public class URLS {
     public final static String GET_MATCHES = MAIN_URL + "matches";
 
     public final static String UPLOAD_IMAGE = MAIN_URL_IMAGES + "/uploads/profile/";
+
+
 
 }

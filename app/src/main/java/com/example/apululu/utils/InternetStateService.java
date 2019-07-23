@@ -92,6 +92,7 @@ public class InternetStateService extends Service {
             IO.Options opts = new IO.Options();
             opts.query = "token=" + Util.getTokenPrefs(prefs);
             socket = IO.socket("http://192.168.2.117:3000", opts);
+            Log.d("NotificationsSocket", socket.toString());
         } catch (URISyntaxException e) {}
         return socket;
     }

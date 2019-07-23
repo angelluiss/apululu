@@ -1,26 +1,37 @@
 package com.example.apululu.activity;
 
+import android.content.Context;
 import android.content.Intent;
+
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.example.apululu.R;
+import com.example.apululu.adapter.CustomListAdapter;
 import com.example.apululu.adapter.PagerTabAdapter;
+import com.example.apululu.helper.HTTPHelper;
+import com.example.apululu.model.Notification;
+import com.example.apululu.utils.URLS;
+import com.example.apululu.utils.Util;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class ChataAndNotificationActivity extends AppCompatActivity {
-
-    String[] nameArray = {"Karla Peña", "Sofia Vergara", "Mia Khalifa", "Amanda Rimkjock"};
-    String[] infoArray = {"It's Matched with you", "Likes you", "Send you a message", "Send you a message"};
-    Integer[] imageArray = {R.drawable.heart_1_like, R.drawable.heart_1_like,R.drawable.feed_icon_big,R.drawable.feed_icon_big};
-
-    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +58,9 @@ public class ChataAndNotificationActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+
 
 
         // **** Creaciòn de los tabs
@@ -78,5 +92,6 @@ public class ChataAndNotificationActivity extends AppCompatActivity {
                 }
         );
     }
+
 
 }
