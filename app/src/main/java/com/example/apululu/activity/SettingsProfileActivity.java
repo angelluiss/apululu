@@ -91,6 +91,8 @@ public class SettingsProfileActivity extends AppCompatActivity {
         loadingButton.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 loadingButton.setLoading(true);
+
+
                 new Handler().postDelayed(new Runnable() {
                     @Override public void run() {
                         loadingButton.setLoading(false);
@@ -250,6 +252,8 @@ public class SettingsProfileActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
 
 

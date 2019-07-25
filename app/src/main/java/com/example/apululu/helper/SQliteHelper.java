@@ -8,7 +8,7 @@ public class SQliteHelper extends SQLiteOpenHelper {
 
     private static final String GALLERY_TABLE_CREATE = "CREATE TABLE gallery(_id INTEGER PRIMARY KEY AUTOINCREMENT, userId NUMERIC, image TEXT)";
     private static final String USERS_TABLE_CREATE = "CREATE TABLE users(_id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, password TEXT, created_at NUMERIC, updated_at NUMERIC)";
-    private static final String PROFILES_TABLE_CREATE = "CREATE TABLE profiles(_id INTEGER PRIMARY KEY AUTOINCREMENT, userId NUMERIC, firtsName TEXT, lastName TEXT, age NUMERIC, city TEXT, sex TEXT, work TEXT, study TEXT, other TEXT, description TEXT)";
+    private static final String PROFILES_TABLE_CREATE = "CREATE TABLE profiles(_id INTEGER PRIMARY KEY AUTOINCREMENT, userId NUMERIC, firstName TEXT, lastName TEXT, age TEXT, city TEXT, sex TEXT, work TEXT, study TEXT, other TEXT,image TEXT, phoneNumber TEXT, description TEXT)";
     private static final String NOTIFICATIONS_TABLE_CREATE = "CREATE TABLE notifications(_id INTEGER PRIMARY KEY AUTOINCREMENT, userId NUMERIC, type TEXT, data TEXT, created_at NUMERIC, updated_at NUMERIC)";
     private static final String LOCALIZATIONS_TABLE_CREATE = "CREATE TABLE localizations(_id INTEGER PRIMARY KEY AUTOINCREMENT, userId NUMERIC, longitude NUMERIC, latitude NUMERIC)";
     private static final String MESSAGES_TABLE_CREATE = "CREATE TABLE messages(_id INTEGER PRIMARY KEY AUTOINCREMENT, fromUserId NUMERIC, toUserId NUMERIC, type TEXT, content TEXT, created_at NUMERIC, updated_at NUMERIC)";

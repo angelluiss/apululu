@@ -5,23 +5,23 @@ import android.graphics.drawable.Drawable;
 
 public class Cards {
 
-    private int imageBitmap;
+    private Bitmap imageBitmap;
     private String name;
     private String location;
     private int userID;
 
-    public Cards(int imageBitmap, String name, String location, Integer userID) {
+    public Cards(Bitmap imageBitmap, String name, String location, Integer userID) {
         this.imageBitmap = imageBitmap;
         this.name = name;
         this.location = location;
         this.userID = userID;
     }
 
-    public int getDrawable() {
+    public Bitmap getDrawable() {
         return imageBitmap;
     }
 
-    public void setDrawable(int imageBitmap) {
+    public void setDrawable(Bitmap imageBitmap) {
         this.imageBitmap = imageBitmap;
     }
 

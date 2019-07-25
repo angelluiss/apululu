@@ -21,7 +21,7 @@ public class URLS {
 
     public final static String USER_FILTER = MAIN_URL + "userfilter";
 
-    public final static String CHAT_LIST = MAIN_URL + "chat";
+    public final static String CHAT_LIST = MAIN_URL + "matches/chat-rooms/";
 
     public final static String DELETE_IMAGE = MAIN_URL + "delete_galleryimage";
 

@@ -28,6 +28,7 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ import com.example.apululu.adapter.DeckAdapter;
 import com.example.apululu.helper.HTTPHelper;
 import com.example.apululu.utils.URLS;
 import com.example.apululu.utils.Util;
+import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import org.json.JSONArray;
@@ -54,6 +56,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import es.dmoral.toasty.Toasty;
 import link.fls.swipestack.SwipeStack;
 
@@ -292,14 +295,44 @@ public class HomeActivity extends AppCompatActivity implements FlingChiefListene
 
        //         putDBDates(sex, firstName, lastName, image, distance,birthdate);
 
-                int tamaño = object.length();
-                int userID = Integer.parseInt(userId);
+
                 // Swipe Card Inicialization del Array list
                 // Swipe Card Home Variables
             //    DownloadImageFromPath(urls.MAIN_URL_IMAGES + image);
 
-                String firtsAndlastName = firstName + " " + lastName;
-                newItemWithDelay(0, firtsAndlastName, String.valueOf(distance), userID);
+
+
+
+                ///* *****  Imagen con picasso
+
+               try{Picasso.get() .load(URLS.UPLOAD_IMAGE + image)
+                           .error(R.drawable.rounded_button_gradient_solid)
+                           .placeholder(R.drawable.heart_1_like).into(new Target() {
+                           @Override
+                           public void onBitmapLoaded (final Bitmap bitmap, Picasso.LoadedFrom from){
+                               /* Save the bitmap or do something with it here */
+                               int userID = Integer.parseInt(userId);
+                               //Set it in the ImageView
+                               String firtsAndlastName = firstName + " " + lastName;
+                               newItemWithDelay( 0, firtsAndlastName, String.valueOf(distance), userID, bitmap);
+                           }
+
+                           @Override
+                           public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+
+                           }
+
+                           @Override
+                           public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+                           }
+
+                       });
+               }catch (Exception IOException){
+
+               }
+
+
 
 
 
@@ -466,16 +499,16 @@ public class HomeActivity extends AppCompatActivity implements FlingChiefListene
     }
 
 
-    private Cards newItem(String name, String location, Integer userID){
+    private Cards newItem(Bitmap imagen,String name, String location, Integer userID){
 
-        Cards res = new Cards(R.drawable.button_rounded_gray, name, location, userID);
+        Cards res = new Cards(imagen, name, location, userID);
         return res;
     }
 
 
-    private void newItemWithDelay(int delay, String name,String location,int userID){
+    private void newItemWithDelay(int delay, String name,String location,int userID, Bitmap imagen){
 
-        final Cards res = newItem(name, location,userID);
+        final Cards res = newItem(imagen, name, location,userID);
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

@@ -59,7 +59,4 @@ public class CustomListAdapter extends ArrayAdapter {
 
 
 
-
-
-
 }

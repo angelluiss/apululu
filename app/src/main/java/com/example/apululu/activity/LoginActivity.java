@@ -1,5 +1,6 @@
 package com.example.apululu.activity;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -45,8 +46,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
-
         LinearLayout buttonNext = (LinearLayout) findViewById(R.id.buttonNextLogin);
         userEmail = (TextInputEditText) findViewById(R.id.tiUser);
         userPassword = (TextInputEditText) findViewById(R.id.tiPassword);
@@ -62,8 +61,6 @@ public class LoginActivity extends AppCompatActivity {
                     JSONObject dataJSON1;
                     dataJSON1 = createJSONObject(userEmail, userPassword);
                     postData(url, dataJSON1);
-
-
                 }
             }
         });
@@ -131,38 +128,97 @@ public class LoginActivity extends AppCompatActivity {
                         try {
                             tokenLogin = response.getString("token");
                             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
-                            SharedPreferences.Editor editor = preferences.edit();
+                         //   SharedPreferences.Editor editor = preferences.edit();
                             saveOnPreferences(userEmail.getText().toString(),userPassword.getText().toString(),tokenLogin);
                             Log.d("preferencias", preferences.toString());
 
                             /// ********************* BASE DE DATOS / DATA BASE ************************
                             SQliteHelper dbHelper = new SQliteHelper(LoginActivity.this);
-                            SQLiteDatabase db = dbHelper.getWritableDatabase();
+                            final SQLiteDatabase db = dbHelper.getWritableDatabase();
 
                             ///// Query to db
-                            Cursor c = db.rawQuery("SELECT _id, userId FROM comments", null);
-                            if (c != null) {
-                                c.moveToFirst();
-                                do {
+                         //   Cursor c = db.rawQuery("SELECT _id, userId,firstName, lastName, age, city, sex, work, study, other, image, phoneNumber, description  FROM profiles", null);
+                         //   Log.d("usuariooss",c.toString());
+
                                     //Asignamos el valor en nuestras variables para usarlos en lo que necesitemos
-                                    String user = c.getString(c.getColumnIndex("userId"));
-                                    if(!user.isEmpty()){
-                                        HTTPHelper profilePetitions = new HTTPHelper(LoginActivity.this);
-                                        profilePetitions.petitionData(URLS.GET_USER_DETAIL,tokenLogin, "GET", null,new Response.Listener<JSONObject>() {
+
+                                    HTTPHelper profilePetitions = new HTTPHelper(LoginActivity.this);
+                                    profilePetitions.petitionData(URLS.GET_USER_DETAIL,tokenLogin, "GET", null,new Response.Listener<JSONObject>() {
                                                     @Override
                                                     public void onResponse(JSONObject response) {
 
+                                                        try {
+                                                            int userId = Integer.parseInt(response.getString("userId"));
+                                                            String firstName = response.getString("firstName");
+                                                            String lastName = response.getString("lastName");
+                                                            String birthdate = response.getString("birthdate");
+                                                            String city = response.getString("city");
+                                                            String sex =  response.getString("sex");
+                                                            String work =  response.getString("work");
+                                                            String study =  response.getString("study");
+                                                            String other =  response.getString("other");
+                                                            String image = response.getString("image");
+                                                            String phoneNumber = response.getString("phoneNumber");
+                                                            String description = response.getString("description");
+
+
+                                                            /// ***** UPDATE en la DB
+                                                            ContentValues cv = new ContentValues();
+                                                            cv.put("userId",userId);
+                                                            cv.put("firstName",firstName);
+                                                            cv.put("lastName",lastName);
+                                                            cv.put("age",birthdate);
+                                                            cv.put("city",city);
+                                                            cv.put("sex",sex);
+                                                            cv.put("work",work);
+                                                            cv.put("study",study);
+                                                            cv.put("other",other);
+                                                            cv.put("image",image);
+                                                            cv.put("phoneNumber",phoneNumber);
+                                                            cv.put("description",description);
+
+                                                            db.insert("profiles", null, cv);
+
+                                                           /* String[] args = new String []{ "userId"};
+                                                            db.update("profiles", cv, "userId=?", args);
+                                                            String[] args1 = new String []{ "firstName"};
+                                                            db.update("profiles", cv, "firstName=?", args1);
+                                                            String[] args3 = new String []{ "lastName"};
+                                                            db.update("profiles", cv, "lastName=?", args3);
+                                                            String[] args4 = new String []{ "age"};
+                                                            db.update("profiles", cv, "age=?", args4);
+                                                            String[] args5 = new String []{ "city"};
+                                                            db.update("profiles", cv, "city=?", args5);
+                                                            String[] args6 = new String []{ "sex"};
+                                                            db.update("profiles", cv, "sex=?", args6);
+                                                            String[] args7 = new String []{ "work"};
+                                                            db.update("profiles", cv, "work=?", args7);
+                                                            String[] args8 = new String []{ "study"};
+                                                            db.update("profiles", cv, "study=?", args8);
+                                                            String[] args9 = new String []{ "other"};
+                                                            db.update("profiles", cv, "other=?", args9);
+                                                            String[] args10 = new String []{ "image"};
+                                                            db.update("profiles", cv, "image=?", args10);
+                                                            String[] args11 = new String []{ "phoneNumber"};
+                                                            db.update("profiles", cv, "phoneNumber=?", args11);
+                                                            String[] args12 = new String []{ "description"};
+                                                            db.update("profiles", cv, "description=?", args12);*/
+                                                            db.close();
+
+
+                                                         }catch (JSONException exception){
+                                                            Log.d("ParseProfileError", exception.toString());
+                                                        }
+
+                                                        Log.d("Respuesta de perfil",response.toString());
                                                     }
                                                 },
                                                 new Response.ErrorListener() {
                                                     @Override
                                                     public void onErrorResponse(VolleyError error) {
-
+                                                        Log.d("ErrorRespuestaPerfil",error.toString());
                                                     }
                                                 } );
-                                    }
-                                } while (c.moveToNext());
-                            }
 
 
 
@@ -189,7 +245,5 @@ public class LoginActivity extends AppCompatActivity {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requstQueue.add(jsonobj);
     }
-
-
 
 }

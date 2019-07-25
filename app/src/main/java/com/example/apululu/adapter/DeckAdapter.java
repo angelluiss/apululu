@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -20,6 +22,7 @@ import com.example.apululu.R;
 import com.example.apululu.utils.Cards;
 
 import java.util.List;
+
 
 
 public class DeckAdapter extends ArrayAdapter<Cards> {
@@ -45,7 +48,9 @@ public class DeckAdapter extends ArrayAdapter<Cards> {
         Cards item = getItem(position);
         if (item != null) {
             ((TextView) layout.findViewById(R.id.item_text)).setText(item.getName());
-            ((TextView) layout.findViewById(R.id.item_text2)).setText(item.getName());
+          //  ((TextView) layout.findViewById(R.id.item_text2)).setText(item.getName());
+            Drawable d = new BitmapDrawable(getContext().getResources(),item.getDrawable());
+            ((ImageView) layout.findViewById(R.id.image_play)).setImageDrawable(d);
         }
         return layout;
     }
