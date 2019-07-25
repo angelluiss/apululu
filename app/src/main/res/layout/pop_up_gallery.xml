@@ -1,6 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_transparent">
 
-</android.support.constraint.ConstraintLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/rounded_popup_backgroud"
+        android:layout_margin="20dp">
+        <TextView
+            android:id="@+id/tvClosePopup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X"
+            android:textSize="25sp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="8dp"/>
+        <TextView
+            android:id="@+id/tvOptionGAllery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Image Options"
+            android:textSize="20sp"
+            android:layout_marginTop="50dp" />
+        <RelativeLayout
+            android:id="@+id/rlMarcoBotones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true">
+            <RelativeLayout
+                android:id="@+id/llGallery"
+                android:layout_width="80dp"
+                android:layout_height="107dp"
+                android:background="@drawable/card_blue_backgroud"
+                android:orientation="horizontal"
+                android:layout_margin="10dp">
+                <ImageView
+                    android:id="@+id/ivCameraPopup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/camera_popup_small"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/llPhotoGallery"
+                android:layout_width="80dp"
+                android:layout_height="107dp"
+                android:background="@drawable/card_blue_backgroud"
+                android:orientation="horizontal"
+                android:layout_toEndOf="@+id/llGallery"
+                android:layout_margin="10dp">
+                <ImageView
+                    android:id="@+id/ivGalleryPopup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/gallery_popup"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/llDelete"
+                android:layout_width="80dp"
+                android:layout_height="107dp"
+                android:background="@drawable/card_blue_backgroud"
+                android:orientation="horizontal"
+                android:layout_toEndOf="@+id/llPhotoGallery"
+                android:layout_margin="10dp">
+                <ImageView
+                    android:id="@+id/ivDeletePopup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/delete_photo_popup"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"/>
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

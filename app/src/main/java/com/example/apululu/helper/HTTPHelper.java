@@ -41,6 +41,9 @@ public class HTTPHelper<preferences> {
             case "PATCH":
                 method = Request.Method.PATCH;
                 break;
+            case "DELETE":
+                method = Request.Method.DELETE;
+                break;
         }
         JsonObjectRequest jsonobj = new JsonObjectRequest(method, url,dataJSON, responseListener,errorListener){
             @Override
@@ -69,6 +72,9 @@ public class HTTPHelper<preferences> {
                 break;
             case "PATCH":
                 method = Request.Method.PATCH;
+                break;
+            case "DELETE":
+                method = Request.Method.DELETE;
                 break;
         }
         JsonArrayRequest jsonobj = new JsonArrayRequest(method, url,dataJSON, responseListener,errorListener){

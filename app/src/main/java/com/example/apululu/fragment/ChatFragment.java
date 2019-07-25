@@ -4,6 +4,9 @@ package com.example.apululu.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -24,11 +27,14 @@ import com.example.apululu.model.ChatList;
 import com.example.apululu.model.Notification;
 import com.example.apululu.utils.URLS;
 import com.example.apululu.utils.Util;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -80,24 +86,44 @@ public class ChatFragment extends Fragment {
     private void parseJSONArray(JSONArray array, String token) {
         try {
             for (int count = 0; count < array.length(); count++) {
-                String item = array.getString(count);
+                final String item = array.getString(count);
                 Log.d("Itemddd", item);
                 getChats.petitionData(URLS.CHAT_LIST + item + "/from",token, "GET", null, new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
-                                for (int count = 0; count < (response.length() - 2); count++){
+                                for (int count = 0; count < (response.length() / 3); count++){
 
                                     try {
                                      //   object = response.getJSONObject(count);
                                         JSONObject data = response.getJSONObject("profile");
                                         Log.d("Falta235", data.toString());
-                                        String nameChat = data.getString("firstName");
-                                        String lastNameChat = data.getString("lastName");
+                                        final String nameChat = data.getString("firstName");
+                                        final String lastNameChat = data.getString("lastName");
                                         String image = data.getString("image");
 
-                                        ChatList chatListModel = new ChatList(R.drawable.heart_1_like, nameChat,lastNameChat);
+                                        Picasso.get().load(URLS.UPLOAD_IMAGE + image).into(new Target() {
+                                            @Override
+                                            public void onBitmapLoaded (final Bitmap bitmap, Picasso.LoadedFrom from){
+                                                /* Save the bitmap or do something with it here */
+                                                Drawable d = new BitmapDrawable(getResources(), bitmap);
+                                                ChatList chatListModel = new ChatList(d, nameChat,lastNameChat);
+                                                chatListsArrayList.add(chatListModel);
+                                            }
 
-                                        chatListsArrayList.add(chatListModel);
+                                            @Override
+                                            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+
+                                            }
+
+                                            @Override
+                                            public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+                                            }
+
+                                        });
+
+
+
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
@@ -111,7 +137,12 @@ public class ChatFragment extends Fragment {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position,
                                                             long id) {
+
+                                        Bundle itemChat = new Bundle();
+                                        itemChat.putString("chatRoom", item);
+
                                         Intent chat = new Intent(getContext(), ChatActivity.class);
+                                        chat.putExtras(itemChat);
                                         startActivity(chat);
                                     }
                                 });

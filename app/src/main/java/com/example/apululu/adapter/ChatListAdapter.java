@@ -47,8 +47,8 @@ public class ChatListAdapter extends ArrayAdapter {
 
         infoTextField.setText(chatArrayList.get(position).getLastName());
 
-        imageView.setBackgroundResource(chatArrayList.get(position).getImageChat());
-
+       // imageView.setBackgroundResource();
+        imageView.setBackground(chatArrayList.get(position).getImageChat());
         return rowView;
     }
 }

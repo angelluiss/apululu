@@ -44,8 +44,8 @@ public class InternetStateService extends Service {
     public int onStartCommand(Intent intent, int flag, int idProcess){
 
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
-        Socket socket = this.getSocket();
 
+        Socket socket = this.getSocket();
         socket.connect();
         socket.on("new notification", new Emitter.Listener() {
             @Override

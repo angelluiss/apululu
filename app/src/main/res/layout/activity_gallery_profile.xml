@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.GalleryProfileActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/rlGallery">
 
     <include
         layout="@layout/menu_layout"
@@ -26,20 +27,24 @@
                 android:layout_margin="3dp"
                 android:background="@drawable/fondo_gallery">
                 <ImageView
+                    android:id="@+id/ivPhoto1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:onClick="ShowPopup"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/llPhoto2"
                 android:layout_width="164dp"
                 android:layout_height="277dp"
                 android:layout_margin="3dp"
-                android:background="@drawable/fondo_gallery"
                 android:layout_alignParentRight="true"
                 android:layout_toRightOf="@+id/llPhoto1">
                 <ImageView
+                    android:id="@+id/ivPhoto2"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:background="@drawable/fondo_gallery"
+                    android:onClick="ShowPopup"/>
             </LinearLayout>
 
             <LinearLayout
@@ -50,11 +55,13 @@
                 android:layout_marginStart="3dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="3dp"
-                android:layout_marginBottom="3dp"
-                android:background="@drawable/fondo_gallery">
+                android:layout_marginBottom="3dp">
                 <ImageView
+                    android:id="@+id/ivPhoto3"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:background="@drawable/fondo_gallery"
+                    android:onClick="ShowPopup"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/llPhoto4"
@@ -65,11 +72,13 @@
                 android:layout_marginStart="3dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="3dp"
-                android:layout_marginBottom="3dp"
-                android:background="@drawable/fondo_gallery">
+                android:layout_marginBottom="3dp">
                 <ImageView
+                    android:id="@+id/ivPhoto4"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:background="@drawable/fondo_gallery"
+                    android:onClick="ShowPopup"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/llPhoto5"
@@ -80,11 +89,13 @@
                 android:layout_marginStart="3dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="3dp"
-                android:layout_marginBottom="3dp"
-                android:background="@drawable/fondo_gallery">
+                android:layout_marginBottom="3dp">
                 <ImageView
+                    android:id="@+id/ivPhoto5"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:background="@drawable/fondo_gallery"
+                    android:onClick="ShowPopup"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/llPhoto6"
@@ -95,11 +106,13 @@
                 android:layout_marginStart="3dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="3dp"
-                android:layout_marginBottom="3dp"
-                android:background="@drawable/fondo_gallery">
+                android:layout_marginBottom="3dp">
                 <ImageView
+                    android:id="@+id/ivPhoto6"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:background="@drawable/fondo_gallery"
+                    android:onClick="ShowPopup"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/llPhoto7"
@@ -110,11 +123,12 @@
                 android:layout_marginStart="3dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="3dp"
-                android:layout_marginBottom="3dp"
-                android:background="@drawable/fondo_gallery">
+                android:layout_marginBottom="3dp">
                 <ImageView
+                    android:id="@+id/ivPhoto7"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:background="@drawable/fondo_gallery"/>
             </LinearLayout>
 
         </RelativeLayout>

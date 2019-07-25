@@ -46,7 +46,7 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/llFacebookLogin"
+                android:id="@+id/llEmailLogin"
                 android:layout_width="260dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -67,10 +67,10 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginRight="5dp"
+                            android:src="@drawable/ic_email"
                             android:gravity="center"
-                            android:src="@drawable/ic_facebook" />
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="5dp"/>
                     </LinearLayout>
 
 
@@ -86,8 +86,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/facebook_button"
-                        android:textColor="@color/color_white" />
+                        android:text="@string/login_email_button"
+                        android:textColor="@color/color_white"
+                        />
 
                 </LinearLayout>
             </LinearLayout>
@@ -99,7 +100,7 @@
             android:layout_marginTop="256dp"
             android:orientation="vertical">
             <LinearLayout
-                android:id="@+id/llEmailLogin"
+                android:id="@+id/llSingUp"
                 android:layout_width="260dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_button_login_email"
@@ -110,50 +111,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-
                     android:layout_weight="0.4">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_email"
-                        android:gravity="center"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginRight="5dp"/>
-
-                    <TextView
-                        android:layout_width="0.5dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="15dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginStart="15dp"
-                        android:background="@color/color_white" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/login_email_button"
-                        android:textColor="@color/color_white"
-                        />
-
+                        android:text="@string/register_singup"
+                        android:textColor="@color/color_white" />
                 </LinearLayout>
-
             </LinearLayout>
-
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/llSingUp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/logoWhite"
-            android:gravity="center"
-            android:layout_marginTop="380dp">
-            <TextView
-                android:id="@+id/tvRegister"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:text="@string/register_singup"
-                android:textColor="@color/color_white"/>
         </LinearLayout>
     </RelativeLayout>
 

@@ -296,11 +296,6 @@ public class HomeActivity extends AppCompatActivity implements FlingChiefListene
        //         putDBDates(sex, firstName, lastName, image, distance,birthdate);
 
 
-                // Swipe Card Inicialization del Array list
-                // Swipe Card Home Variables
-            //    DownloadImageFromPath(urls.MAIN_URL_IMAGES + image);
-
-
 
 
                 ///* *****  Imagen con picasso

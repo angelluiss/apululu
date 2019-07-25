@@ -1,19 +1,21 @@
 package com.example.apululu.model;
 
+import android.graphics.drawable.Drawable;
+
 import org.json.JSONArray;
 
 public class ChatList {
-    private Integer imageChat;
+    private Drawable imageChat;
     private String NameChat;
     private String LastName;
 
-    public ChatList(Integer imageChat, String NameChat, String LastName) {
+    public ChatList(Drawable imageChat, String NameChat, String LastName) {
         this.imageChat = imageChat;
         this.NameChat = NameChat;
         this.LastName = LastName;
     }
 
-    public Integer getImageChat() {
+    public Drawable getImageChat() {
         return imageChat;
     }
 

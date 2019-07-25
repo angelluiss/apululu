@@ -17,18 +17,9 @@ public class LoginOrSingUPActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login_or_sing_up);
 
         // Click para cambiar de activity
-        TextView register = (TextView) findViewById(R.id.tvRegister);
         LinearLayout registerText = (LinearLayout) findViewById(R.id.llSingUp);
         LinearLayout loginEmailButton = (LinearLayout) findViewById(R.id.llEmailLogin);
-        LinearLayout loginFacebookButton = (LinearLayout) findViewById(R.id.llFacebookLogin);
 
-        loginFacebookButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1 = new Intent(LoginOrSingUPActivity.this,HomeActivity.class);
-                startActivity(intent1);
-            }
-        });
 
         registerText.setOnClickListener(new View.OnClickListener() {
             @Override
