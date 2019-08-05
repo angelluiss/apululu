@@ -45,5 +45,7 @@ dependencies {
     implementation 'com.diogobernardino:rossdeckview:1.2'
     implementation 'link.fls:swipestack:0.3.0'
     implementation 'com.github.92tonywills:android-loading-button:0.1.0'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.0.1'
+    implementation group: 'com.github.bumptech.glide', name: 'glide', version: '4.2.0'
 
 }

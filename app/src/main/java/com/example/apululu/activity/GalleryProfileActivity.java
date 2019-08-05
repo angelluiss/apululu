@@ -27,6 +27,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
 import android.util.Base64;
+import android.util.Base64InputStream;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -45,12 +46,19 @@ import com.example.apululu.utils.Util;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
+import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringWriter;
 
 import es.dmoral.toasty.Toasty;
 
@@ -80,6 +88,7 @@ public class GalleryProfileActivity extends AppCompatActivity {
     HTTPHelper httpImages;
     String idImage;
     SharedPreferences prefs;
+    int imageSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,6 +168,11 @@ public class GalleryProfileActivity extends AppCompatActivity {
             }
         });
 
+
+        int imageSelected = 2 ;
+
+
+
         // *** Instancia del los Widgets del menú
         LinearLayout buttonProfile = (LinearLayout) findViewById(R.id.llProfileButton);
         LinearLayout buttonFeed = (LinearLayout) findViewById(R.id.llFeedButton);
@@ -199,6 +213,7 @@ public class GalleryProfileActivity extends AppCompatActivity {
         ImageView camera = (ImageView) myDialog.findViewById(R.id.ivCameraPopup);
         RelativeLayout gallery = (RelativeLayout) myDialog.findViewById(R.id.llPhotoGallery);
         RelativeLayout delete = (RelativeLayout) myDialog.findViewById(R.id.llDelete);
+
 
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
@@ -286,6 +301,8 @@ public class GalleryProfileActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         outState.putString("file_path", mPath);
         outState.putString("id_image", idImage);
+        outState.putInt("click_image", imageSelected);
+
     }
 
     @Override
@@ -293,6 +310,7 @@ public class GalleryProfileActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         mPath = savedInstanceState.getString("file_path");
         idImage = savedInstanceState.getString("id_image");
+        imageSelected = savedInstanceState.getInt("click_image");
     }
 
 
@@ -317,24 +335,35 @@ public class GalleryProfileActivity extends AppCompatActivity {
                     Bitmap bitmap = BitmapFactory.decodeFile(mPath);
                     Log.d("imagenTomada", bitmap.toString());
                  //   Drawable d = new BitmapDrawable(getResources(), bitmap);
+                    switch (imageSelected){
+                        case 1:
+                            break;
+                        case 2:Log.d("imagecliked",String.valueOf(imageSelected));
+                            break;
+                    }
+                    Log.d("imagecliked",String.valueOf(imageSelected));
+
                     image1.setImageBitmap(bitmap);
                     BitmapFactory.Options opt = new BitmapFactory.Options();
                     opt.inJustDecodeBounds = true;
                     BitmapFactory.decodeFile(mPath, opt);
                     Log.d("mimetype",opt.outMimeType);
-                    String imageBase64 = "data:" + opt.outMimeType + ";base64," + getStringImagen(bitmap);
-                    ;
-                    httpImages.getDataArray(URLS.MAIN_URL + "/me/photos/" + idImage,Util.getTokenPrefs(prefs), "DELETE",null, new Response.Listener<JSONArray>() {
-                        @Override
-                        public void onResponse(JSONArray response) {
-                            Log.d("Resposefadfa",response.toString());
-                        }
-                    },  new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.d("deleteResponse",error.toString());
-                        }
-                    });
+                    String imageBase64 = getStringImagen(bitmap);
+                    Log.d("concatenaresult",imageBase64);
+                    if(idImage != null){
+                        httpImages.getDataArray(URLS.MAIN_URL + "me/photos/" + idImage,Util.getTokenPrefs(prefs), "DELETE",null, new Response.Listener<JSONArray>() {
+                            @Override
+                            public void onResponse(JSONArray response) {
+                                Log.d("Resposefadfa",response.toString());
+                            }
+                        },  new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.d("deleteResponse",error.toString());
+                            }
+                        });
+                    }
+
 
                     JSONObject imageObjet = new JSONObject();
                     try {
@@ -359,26 +388,36 @@ public class GalleryProfileActivity extends AppCompatActivity {
                     Uri path = data.getData();
                     image1.setImageURI(path);
                     Bitmap bitmap2 = ((BitmapDrawable)image1.getDrawable()).getBitmap();
+                    BitmapFactory.Options opt1 = new BitmapFactory.Options();
+                    opt1.inJustDecodeBounds = true;
+                    BitmapFactory.decodeFile(path.toString(), opt1);
+               //     Log.d("mpath",mPath);
+                 //   Log.d("mimetype",path.toString());
+                 //   Log.d("mimetype231", opt1.outMimeType);
+                    String imageBase6412 = getStringImagen(bitmap2);
 
-                    httpImages.getDataArray(URLS.MAIN_URL + "/me/photos/" + idImage,Util.getTokenPrefs(prefs), "DELETE",null, new Response.Listener<JSONArray>() {
-                        @Override
-                        public void onResponse(JSONArray response) {
-                            Log.d("Resposefadfa",response.toString());
-                        }
-                    },  new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.d("deleteResponse",error.toString());
-                        }
-                    });
+                    if ( idImage != null){
+                        httpImages.getDataArray(URLS.MAIN_URL + "me/photos/" + idImage,Util.getTokenPrefs(prefs), "DELETE",null, new Response.Listener<JSONArray>() {
+                            @Override
+                            public void onResponse(JSONArray response) {
+                                Log.d("Resposefadfa",response.toString());
+                            }
+                        },  new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.d("deleteResponse",error.toString());
+                            }
+                        });
+                    }
+
 
                     JSONObject imageObjetCamera = new JSONObject();
                     try {
-                        imageObjetCamera.put("image",getStringImagen(bitmap2));
+                        imageObjetCamera.put("image",imageBase6412);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    httpImages.petitionData(URLS.MAIN_URL + "/me/photos/",Util.getTokenPrefs(prefs), "POST",imageObjetCamera, new Response.Listener<JSONObject>() {
+                    httpImages.petitionData(URLS.MAIN_URL + "me/photos/",Util.getTokenPrefs(prefs), "POST",imageObjetCamera, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
                             Log.d("uploadFromGallery",response.toString());
@@ -438,9 +477,9 @@ public class GalleryProfileActivity extends AppCompatActivity {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] imageBytes = baos.toByteArray();
-        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-        Log.d("imagen", encodedImage);
-        return encodedImage;
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.NO_WRAP);
+        Log.d("imagen321", encodedImage);
+        return "data:" + "image/jpeg" + ";base64," + encodedImage;
     }
 
 
