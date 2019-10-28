@@ -1,6 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/tvCloseVIP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:text="X"
+        android:textSize="30sp"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+        <RelativeLayout
+            android:id="@+id/rlVipCabecera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/vip_background">
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rlBackgorundVIP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/backgound_bottom_vip"
+            android:layout_below="@+id/rlVipCabecera"
+            android:layout_centerHorizontal="true">
+            <RelativeLayout
+                android:id="@+id/rlBackgroundVIP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true">
+                <RelativeLayout
+                    android:id="@+id/rlTextVIP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/vip_card_month">
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/rlTextVIP2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/vip_card_month"
+                    android:layout_toEndOf="@+id/rlTextVIP"/>
+                <RelativeLayout
+                    android:id="@+id/rlTextVIP3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/vip_card_month"
+                    android:layout_toEndOf="@+id/rlTextVIP2"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlBackgroundVIP"
+                android:background="@drawable/background_d"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ACCEPT"
+                    android:textSize="20sp"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/color_white"/>
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

@@ -313,8 +313,6 @@ public class GalleryProfileActivity extends AppCompatActivity {
         imageSelected = savedInstanceState.getInt("click_image");
     }
 
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

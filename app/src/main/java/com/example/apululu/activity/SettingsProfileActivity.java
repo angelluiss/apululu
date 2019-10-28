@@ -227,7 +227,8 @@ public class SettingsProfileActivity extends AppCompatActivity {
             }
         });
 
-
+        //// Instancia de las preferencias Obtener Preferencias
+        prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
 
         //**** Log Out Button --- Cerrar Sesión
         logOutButton.setOnClickListener(new View.OnClickListener() {
@@ -238,8 +239,7 @@ public class SettingsProfileActivity extends AppCompatActivity {
             }
         });
 
-        //// Instancia de las preferencias Obtener Preferencias
-        prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+
 
 
         etBirthday = findViewById(R.id.etBirthday);

@@ -2,8 +2,8 @@ package com.example.apululu.utils;
 
 public class URLS {
 
-    public final static String MAIN_URL = "http://192.168.2.117:3000/api/"; //Enter Your Api Prefix  Url ex
-    public final static String MAIN_URL_IMAGES = "http://192.168.2.117:3000/";
+    public final static String MAIN_URL = "http://192.168.2.122:3000/api/"; //Enter Your Api Prefix  Url ex
+    public final static String MAIN_URL_IMAGES = "http://192.168.2.122:3000";
     //Enter  Image Upload Prefix  Url
 
 

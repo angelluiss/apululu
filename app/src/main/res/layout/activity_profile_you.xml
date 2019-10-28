@@ -39,7 +39,7 @@
                     android:id="@+id/tvProfileTittle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Alicia Call"
+                    android:text=""
                     android:textSize="30sp"
                     android:textColor="@color/color_white"/>
             </LinearLayout>
@@ -53,8 +53,9 @@
                     android:id="@+id/profile_image"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:src="@drawable/imagen_perfil"
-                    app:civ_border_color="#FF000000" />
+                    android:src="@drawable/ic_sinfoto"
+                    app:civ_border_color="#FF000000"
+                    android:onClick="ShowPopup"/>
 
             </LinearLayout>
         </RelativeLayout>
@@ -91,14 +92,16 @@
                                 android:id="@+id/tvAgeProfile"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="21,"
+                                android:hint="Age,"
+                                android:text=""
                                 android:textSize="30sp"
                                 android:textColor="@color/color_gray"/>
                             <TextView
                                 android:id="@+id/tvOccupationProfile"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Student"
+                                android:hint="Profession"
+                                android:text=""
                                 android:textSize="20sp"
                                 android:textColor="@color/color_gray"/>
                         </LinearLayout>
@@ -109,7 +112,8 @@
                                 android:id="@+id/tvDistanceProfile"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="150 km"
+                                android:hint=""
+                                android:text=""
                                 android:textSize="20sp"
                                 android:textColor="@color/color_gray"/>
                         </LinearLayout>
@@ -129,7 +133,8 @@
                                 android:id="@+id/tvCityProfile"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Habana Cuba"
+                                android:hint="Location"
+                                android:text=""
                                 android:layout_marginLeft="60dp"
                                 android:textColor="@color/color_gray"
                                 android:textSize="20sp"/>
@@ -155,7 +160,8 @@
                                 android:layout_height="wrap_content"
                                 android:maxLines="4"
                                 android:lines="4"
-                                android:text="Lorem Isum Whatesdsda "
+                                android:hint="About You"
+                                android:text=""
                                 android:textColor="@color/color_gray"
                                 android:textSize="20sp" />
                         </LinearLayout>

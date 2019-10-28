@@ -131,7 +131,7 @@ public class ChatActivity extends AppCompatActivity {
         try {
             IO.Options opts = new IO.Options();
             opts.query = "token=" + Util.getTokenPrefs(prefs);
-            socket = IO.socket("http://192.168.2.117:3000", opts);
+            socket = IO.socket(URLS.MAIN_URL_IMAGES, opts);
             Log.d("NotificationsSocket", socket.toString());
         } catch (URISyntaxException e) {}
         return socket;
@@ -216,11 +216,6 @@ public class ChatActivity extends AppCompatActivity {
         messagesContainer.setSelection(messagesContainer.getCount() - 1);
     }
 
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        messageRev = savedInstanceState.getString("file_path");
-    }
 
     private void loadDummyHistory() {
 
@@ -235,7 +230,7 @@ public class ChatActivity extends AppCompatActivity {
         ChatMessage msg1 = new ChatMessage();
         msg1.setId(2);
         msg1.setMe(false);
-        msg1.setMessage("How r u doing???");
+        msg1.setMessage("what are you doing?");
         msg1.setDate(DateFormat.getDateTimeInstance().format(new Date()));
         chatHistory.add(msg1);
 

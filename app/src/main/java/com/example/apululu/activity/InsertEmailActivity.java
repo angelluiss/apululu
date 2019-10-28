@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.apululu.R;
+import com.example.apululu.utils.URLS;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -72,7 +73,7 @@ public class InsertEmailActivity extends AppCompatActivity {
         });
     }
 
-    String url ="http://192.168.2.117:3000/api/auth/verify-email";
+    String url = URLS.MAIN_URL + "auth/verify-email";
 
 
     // *** POST ***

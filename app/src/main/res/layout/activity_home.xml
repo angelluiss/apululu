@@ -50,6 +50,7 @@
                     android:layout_alignParentEnd="true"
                     android:scaleY="0"
                     android:background="@android:color/black"/>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="5dp"

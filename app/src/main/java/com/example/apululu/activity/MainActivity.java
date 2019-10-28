@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     }
     // Here ends onCreate
     //** GET
-   // String url ="http://192.168.2.115:3000/api/hello-world";
+   // String url ="https://apululu.de/api/hello-world";
     // Request a string response from the provided URL.
     /*StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
             new Response.Listener<String>() {

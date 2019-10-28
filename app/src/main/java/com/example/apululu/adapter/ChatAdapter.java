@@ -2,8 +2,6 @@ package com.example.apululu.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +16,7 @@ import com.example.apululu.model.ChatMessage;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+
 
 public class ChatAdapter extends BaseAdapter {
 
@@ -87,7 +84,7 @@ public class ChatAdapter extends BaseAdapter {
 
     private void setAlignment(ViewHolder holder, boolean isMe) {
         if (!isMe) {
-            holder.contentWithBG.setBackgroundResource(R.drawable.rounded_rectangle_blue);
+            holder.contentWithBG.setBackgroundResource(R.drawable.bubble_outgoing);
 
             LinearLayout.LayoutParams layoutParams =
                     (LinearLayout.LayoutParams) holder.contentWithBG.getLayoutParams();
@@ -107,7 +104,8 @@ public class ChatAdapter extends BaseAdapter {
             layoutParams.gravity = Gravity.RIGHT;
             holder.txtInfo.setLayoutParams(layoutParams);
         } else {
-            holder.contentWithBG.setBackgroundResource(R.drawable.rounded_rectangle_green);
+            holder.contentWithBG.setBackgroundResource(R.drawable.bubble_incoming);
+
 
             LinearLayout.LayoutParams layoutParams =
                     (LinearLayout.LayoutParams) holder.contentWithBG.getLayoutParams();

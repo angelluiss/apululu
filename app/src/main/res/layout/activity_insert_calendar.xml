@@ -24,13 +24,17 @@
                 android:gravity="center"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/llcalendar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginTop="40dp"
-            android:layout_below="@+id/tvTittleCalendar">
-            <CalendarView
+            android:layout_centerInParent="true">
+            <EditText
+                android:inputType="number"
                 android:id="@+id/calendarView1"
+                android:textSize="20sp"
+                android:hint="@string/calendar_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -40,8 +44,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="571dp">
+            android:layout_margin="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp">
             <LinearLayout
+                android:id="@+id/llnextAge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_rounded_white"

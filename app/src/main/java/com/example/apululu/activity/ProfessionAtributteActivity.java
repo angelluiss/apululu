@@ -14,6 +14,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.apululu.R;
 import com.example.apululu.utils.SendRegister;
+import com.example.apululu.utils.URLS;
 
 import org.json.JSONObject;
 
@@ -69,9 +70,7 @@ public class ProfessionAtributteActivity extends AppCompatActivity {
                         Toast.makeText(ProfessionAtributteActivity.this, "other", Toast.LENGTH_LONG).show();
                         startActivity(intent1);
                     }else {
-
-
-                        postdata.postData("http://192.168.2.117:3000/api/auth/register", postdata.buildJSONobject(registro), new Response.Listener<JSONObject>() {
+                        postdata.postData(URLS.MAIN_URL + "auth/register", postdata.buildJSONobject(registro), new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
                                 String respuesta = response.toString();

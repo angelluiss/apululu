@@ -116,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
         return dataJSON;
     }
 
-    String url ="http://192.168.2.117:3000/api/auth/login";
+    String url = URLS.MAIN_URL + "auth/login";
     // *** POST ***
     public void postData(String url, JSONObject dataJSON){
         RequestQueue requstQueue = Volley.newRequestQueue(this);

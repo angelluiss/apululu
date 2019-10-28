@@ -50,5 +50,6 @@
     <string name="match_Tittle" translatable="true">Hay un Match</string>
     <string name="save_button" translatable="true">SAVE</string>
     <string name="notification_like_message">Te ha dado un like!</string>
+    <string name="calendar_input">Inserta tu edad</string>
 
 </resources>
